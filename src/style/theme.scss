@@ -1,0 +1,20 @@
+$color-primary: #118ab2;
+$color-success: #06d6a0;
+$color-warning: #ffd166;
+$color-danger: #ef476f;
+$color-info: #073b4c;
+$color-text-primary: #303133;
+$color-text-regular: #606266;
+$color-text-secondary: #909399;
+$color-text-placeholder: #c0c4cc;
+$color-black: #000;
+$color-white: #fff;
+$border-color-base: #dcdfe6;
+
+$themes: (
+  primary: $color-primary,
+  success: $color-success,
+  warning: $color-warning,
+  danger: $color-danger,
+  info: $color-info
+);

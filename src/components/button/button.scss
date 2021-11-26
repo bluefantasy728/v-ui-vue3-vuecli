@@ -1,0 +1,86 @@
+
+@import "../../style/index.scss";
+.v-button {
+  height: $button-height;
+  font-size: $font-size;
+  padding: 0 1em;
+  border-radius: $button-radius;
+  border: 1px solid $border-color-base;
+  background-color: $color-white;
+  color: $color-text-primary;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
+  cursor: pointer;
+  .v-icon {
+    fill: $color-text-primary;
+  }
+  &:focus {
+    outline: none;
+  }
+  &.v-button--default {
+    &:hover {
+      border-color: lighten($color-primary, 30);
+      color: $color-primary;
+      background-color: lighten($color-primary, 60);
+      .v-icon {
+        fill: $color-primary;
+      }
+    }
+    &:active {
+      border-color: $color-primary;
+    }
+    &.is-disabled {
+      color: $color-text-placeholder;
+      background-color: $color-white;
+      cursor: not-allowed;
+      border-color: $border-color-base;
+    }
+  }
+
+  @each $c in primary, success, warning, danger, info {
+    &.v-button--#{$c} {
+      background-color: map-get($themes, $c);
+      color: $color-white;
+      border: 1px solid map-get($themes, $c);
+      .v-icon {
+        fill: $color-white;
+      }
+      &:hover {
+        border-color: lighten(map-get($themes, $c), 10);
+        background-color: lighten(map-get($themes, $c), 10);
+      }
+      &:active {
+        border-color: darken(map-get($themes, $c), 5);
+        background-color: darken(map-get($themes, $c), 5);
+      }
+      &:focus {
+        outline: none;
+      }
+      &.is-disabled {
+        background-color: lighten(map-get($themes, $c), 20);
+        cursor: not-allowed;
+        border-color: lighten(map-get($themes, $c), 20);
+      }
+    }
+  }
+
+  .left-icon {
+    margin-right: 0.5rem;
+  }
+  .right-icon {
+    margin-left: 0.5rem;
+  }
+  .loading-icon {
+    animation: spin 1s infinite linear;
+  }
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
