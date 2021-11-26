@@ -5,17 +5,23 @@
       'is-disabled':disabled
     }
   ]">
-    <input class="v-input-inner" type="text" @input="onChange" :disabled="disabled" />
+    <input
+      class="v-input-inner"
+      :value="modelValue"
+      type="text"
+      @input="onChange"
+      :disabled="disabled"
+    />
     <div v-if="errorMessage" class="error-message"></div>
   </div>
 </template>
 <script>
 export default {
   name: 'v-input',
-};
+}
 </script>
 <script setup>
-import { defineProps, defineEmits } from 'vue';
+import { defineProps, defineEmits } from 'vue'
 const props = defineProps({
   modelValue: {
     type: String,
@@ -29,11 +35,11 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-});
-const emit = defineEmits(['update']);
+})
+const emit = defineEmits(['update'])
 
 function onChange(e) {
-  emit('update:modelValue', e.target.value);
+  emit('update:modelValue', e.target.value)
 }
 </script>
 

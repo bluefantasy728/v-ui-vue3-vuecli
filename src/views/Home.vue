@@ -1,6 +1,7 @@
 <template>
   <div class="page">
     <div>
+      <v-icon name="settings"></v-icon>
       <v-button>默认按钮</v-button>
       <v-button disabled>默认按钮（禁用）</v-button>
       <v-button type="primary">主要按钮</v-button>
@@ -53,7 +54,7 @@ const { proxy } = getCurrentInstance()
 
 /***** 响应式数据 *****/
 const state = reactive({
-  inputVal: '',
+  inputVal: '输入框内容123',
 })
 
 /***** 方法定义 *****/

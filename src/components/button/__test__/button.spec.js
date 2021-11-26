@@ -11,12 +11,13 @@ describe('button.vue', () => {
     })
     expect(wrapper.classes()).toContain('v-button--primary')
   })
-  it('create', () => {
+  it('icon', () => {
     const wrapper = mount(Button, {
       props: {
-        type: 'danger',
+        icon: 'settings',
       },
     })
-    expect(wrapper.classes()).toContain('v-button--danger')
+    expect(wrapper.find('svg').exists()).toBeTruthy
+    // expect(wrapper.classes()).toContain('v-button--danger')
   })
 })
