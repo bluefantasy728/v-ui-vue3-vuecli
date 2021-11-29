@@ -1,0 +1,13 @@
+@mixin flex-center-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+}
+@mixin flex-alignc {
+  display: flex;
+  align-items: center;
+}

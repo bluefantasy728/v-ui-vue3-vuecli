@@ -1,5 +1,37 @@
 <template>
   <div class="page">
+    <div class="section section-grid">
+      <h4>栅格系统</h4>
+      <v-row>
+        <v-col :span="12"></v-col>
+        <v-col :span="12"></v-col>
+      </v-row>
+      <v-row :gutter="20">
+        <v-col :span="8"></v-col>
+        <v-col :span="8"></v-col>
+        <v-col :span="8"></v-col>
+      </v-row>
+      <v-row>
+        <v-col :span="2"></v-col>
+        <v-col :span="20"></v-col>
+        <v-col :span="2"></v-col>
+      </v-row>
+      <v-row justify="center" :gutter="10">
+        <v-col :span="2"></v-col>
+        <v-col :span="10"></v-col>
+        <v-col :span="2"></v-col>
+      </v-row>
+      <v-row justify="end" :gutter="10">
+        <v-col :span="2"></v-col>
+        <v-col :span="10"></v-col>
+        <v-col :span="2"></v-col>
+      </v-row>
+      <v-row justify="space-between" :gutter="10">
+        <v-col :span="2"></v-col>
+        <v-col :span="10"></v-col>
+        <v-col :span="2"></v-col>
+      </v-row>
+    </div>
     <div>
       <v-icon name="settings"></v-icon>
       <v-button>默认按钮</v-button>
@@ -69,6 +101,30 @@ const { inputVal } = toRefs(state)
 .v-input,
 .v-button {
   margin-right: 10px;
+}
+.section {
+  padding: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #000;
+  & > h4 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+}
+.section-grid {
+  .v-row {
+    margin-bottom: 5px;
+    .v-col {
+      height: 30px;
+      &:nth-of-type(2n) {
+        background: #ccc;
+      }
+      &:nth-of-type(2n + 1) {
+        background: #eee;
+      }
+    }
+  }
 }
 </style>
 
