@@ -1,8 +1,12 @@
 <template>
-  <div :class="[
+  <div
+    :class="[
       'v-row',
-      `justify-${justify}`
-    ]">
+      justify && `justify-${justify}`,
+      align && `align-${align}`
+    ]"
+    :style="rowStyle"
+  >
     <slot></slot>
   </div>
 </template>
@@ -13,7 +17,7 @@ export default {
 }
 </script>
 <script setup>
-import { defineProps, provide } from 'vue'
+import { defineProps, provide, computed } from 'vue'
 const props = defineProps({
   gutter: {
     type: Number,
@@ -23,7 +27,15 @@ const props = defineProps({
     type: String,
     default: '',
   },
+  align: {
+    type: String,
+    default: '',
+  },
 })
+const rowStyle = computed(() => ({
+  marginLeft: -props.gutter / 2 + 'px',
+  marginRight: -props.gutter / 2 + 'px',
+}))
 provide('gutter', props.gutter)
 </script>
 

@@ -12,21 +12,21 @@
         <v-col :span="8"></v-col>
       </v-row>
       <v-row>
-        <v-col :span="2"></v-col>
+        <v-col :span="2" :offset="150"></v-col>
         <v-col :span="20"></v-col>
         <v-col :span="2"></v-col>
       </v-row>
-      <v-row justify="center" :gutter="10">
+      <v-row justify="center" align="center" :gutter="10">
         <v-col :span="2"></v-col>
         <v-col :span="10"></v-col>
         <v-col :span="2"></v-col>
       </v-row>
-      <v-row justify="end" :gutter="10">
+      <v-row justify="end" align="flex-end" :gutter="10">
         <v-col :span="2"></v-col>
         <v-col :span="10"></v-col>
         <v-col :span="2"></v-col>
       </v-row>
-      <v-row justify="space-between" :gutter="10">
+      <v-row justify="space-between" align="flex-start" :gutter="10">
         <v-col :span="2"></v-col>
         <v-col :span="10"></v-col>
         <v-col :span="2"></v-col>
@@ -86,7 +86,7 @@ const { proxy } = getCurrentInstance()
 
 /***** 响应式数据 *****/
 const state = reactive({
-  inputVal: '输入框内容123',
+  inputVal: '输入框内容',
 })
 
 /***** 方法定义 *****/

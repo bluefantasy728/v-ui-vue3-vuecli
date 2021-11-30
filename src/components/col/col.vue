@@ -19,10 +19,14 @@ const props = defineProps({
     type: Number,
     default: 1,
   },
+  offset: {
+    type: Number,
+    default: 0,
+  },
 })
 const gutter = inject('gutter')
 const colStyle = {
-  marginLeft: gutter / 2 + 'px',
+  marginLeft: gutter / 2 + props.offset + 'px',
   marginRight: gutter / 2 + 'px',
 }
 </script>
