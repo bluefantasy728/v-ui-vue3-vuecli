@@ -1,8 +1,5 @@
 <template>
-  <div :class="[
-    'v-col',
-    `v-col-${span}`
-  ]" :style="colStyle">
+  <div :class="colClass" :style="colStyle">
     <slot></slot>
   </div>
 </template>
@@ -13,31 +10,43 @@ export default {
 }
 </script>
 <script setup>
-import { defineProps, inject } from 'vue'
+import { defineProps, inject, computed } from 'vue'
 const props = defineProps({
   span: {
     type: Number,
     default: 1,
   },
-  offset: {
-    type: Number,
-    default: 0,
+  phone: {
+    type: Object,
+    validator: value => {
+      let keys = Object.keys(value)
+      let valid = true
+      keys.forEach(key => {
+        if (!['span'].includes(key)) {
+          valid = false
+        }
+      })
+      return valid
+    },
   },
 })
 const gutter = inject('gutter')
-const colStyle = {
-  marginLeft: gutter / 2 + props.offset + 'px',
-  marginRight: gutter / 2 + 'px',
-}
+const colStyle = computed(() => {
+  return {
+    marginLeft: gutter / 2 + 'px',
+    marginRight: gutter / 2 + 'px',
+  }
+})
+const colClass = computed(() => {
+  const { span, phone } = props
+  let phoneClasses = []
+  if (phone) {
+    phone.span && phoneClasses.push(`v-col-phone-${phone.span}`)
+  }
+  return ['v-col', span && `v-col-${span}`, ...phoneClasses]
+})
 </script>
 
 <style scoped lang="scss">
-@import '../../style/index.scss';
-.v-col {
-  @for $i from 1 through 24 {
-    &.v-col-#{$i} {
-      width: (($i / 24) * 100) * 1%;
-    }
-  }
-}
+@use './col.scss';
 </style>

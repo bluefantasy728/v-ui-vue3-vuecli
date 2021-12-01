@@ -7,12 +7,12 @@
         <v-col :span="12"></v-col>
       </v-row>
       <v-row :gutter="20">
-        <v-col :span="8"></v-col>
-        <v-col :span="8"></v-col>
-        <v-col :span="8"></v-col>
+        <v-col :span="8" :phone="{span:2}"></v-col>
+        <v-col :span="8" :phone="{span:12}"></v-col>
+        <v-col :span="8" :phone="{span:10}"></v-col>
       </v-row>
       <v-row>
-        <v-col :span="2" :offset="150"></v-col>
+        <v-col :span="2"></v-col>
         <v-col :span="20"></v-col>
         <v-col :span="2"></v-col>
       </v-row>
