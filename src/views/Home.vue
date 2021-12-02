@@ -1,6 +1,10 @@
 <template>
   <div class="page">
     <div class="section section-grid">
+      <h4>Toast</h4>
+      <v-button type="primary" @click="$toast('弹出message!!!')">弹出Message</v-button>
+    </div>
+    <div class="section section-grid">
       <h4>栅格系统</h4>
       <v-row>
         <v-col :span="12"></v-col>
@@ -93,7 +97,9 @@ const state = reactive({
 async function getData() {}
 
 /***** 声明周期和watch *****/
-onMounted(async () => {})
+onMounted(async () => {
+  proxy.$toast('hello toast')
+})
 
 const { inputVal } = toRefs(state)
 </script>
