@@ -1,0 +1,55 @@
+@import '../../style/index.scss';
+.v-toast {
+  position: fixed;
+  min-height: 40px;
+  color: #000;
+  display: flex;
+  align-items: center;
+  padding: 5px 15px;
+  box-sizing: border-box;
+  border-radius: 3px;
+  color: #fff;
+  &.v-toast-success {
+    background: $color-success;
+    border: 1px solid darken($color-success,3);
+  }
+  &.v-toast-info {
+    background: $color-text-placeholder;
+    border: 1px solid darken($color-text-placeholder,3);
+  }
+  &.v-toast-warning {
+    background: $color-warning;
+    border: 1px solid darken($color-warning,3);
+  }
+  &.v-toast-error {
+    background: $color-danger;
+    border: 1px solid darken($color-danger,3);
+  }
+  &.v-toast-top {
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  &.v-toast-bottom {
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  &.v-toast-left {
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  &.v-toast-right {
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .v-toast-text {
+    width: 150px;
+  }
+  .close-icon {
+    cursor: pointer;
+    fill: #fff;
+  }
+}

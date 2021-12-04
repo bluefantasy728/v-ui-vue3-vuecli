@@ -1,12 +1,15 @@
 import { createApp, createVNode, render } from 'vue'
 import Toast from '@/components/toast/toast'
+import { toastThemes } from '@/constant/themes'
 export default {
-  install: (app, options) => {
-    app.config.globalProperties.$toast = message => {
+  install: (app) => {
+    app.config.globalProperties.$toast = (message, options) => {
       const container = document.createElement('div')
       let node
+      console.log(options);
       const component = createApp(Toast, {
         message,
+        ...options,
         close: () => {
           console.log('close')
           component.unmount(container)
@@ -17,6 +20,13 @@ export default {
       node = container.firstElementChild
       document.body.appendChild(node)
     }
+
+    // console.log(toastThemes);
+    toastThemes.forEach(theme => {
+      app.config.globalProperties.$toast[theme] = (message, options) => {
+        app.config.globalProperties.$toast(message, { ...options, type: theme })
+      }
+    })
   },
 }
 let $inst

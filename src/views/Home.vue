@@ -2,7 +2,22 @@
   <div class="page">
     <div class="section section-grid">
       <h4>Toast</h4>
-      <v-button type="primary" @click="$toast('弹出message!!!')">弹出Message</v-button>
+      <v-button
+        type="primary"
+        @click="$toast.success('Top success',{duration:2000,position:'top'})"
+      >top success</v-button>
+      <v-button
+        type="warning"
+        @click="$toast.warning('Bottom warning',{duration:2000,position:'bottom'})"
+      >bottom warning</v-button>
+      <v-button
+        type="info"
+        @click="$toast.info('left info',{duration:2000,position:'left'})"
+      >left info</v-button>
+      <v-button
+        type="danger"
+        @click="$toast.error('right error',{duration:2000,position:'right'})"
+      >right error</v-button>
     </div>
     <div class="section section-grid">
       <h4>栅格系统</h4>
@@ -97,9 +112,7 @@ const state = reactive({
 async function getData() {}
 
 /***** 声明周期和watch *****/
-onMounted(async () => {
-  proxy.$toast('hello toast')
-})
+onMounted(async () => {})
 
 const { inputVal } = toRefs(state)
 </script>

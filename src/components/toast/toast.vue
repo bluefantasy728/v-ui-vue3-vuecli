@@ -1,8 +1,14 @@
 <template>
-  <div class="v-toast">
-    <!-- <div class="v-toast-text">{{message}}</div> -->
-    <slot name="test"></slot>
-  </div>
+  <transition name="fade" mode="out-in" appear>
+    <div :class="[
+      'v-toast',
+      `v-toast-${type}`,
+      `v-toast-${position}`
+    ]">
+      <div class="v-toast-text">{{message}}</div>
+      <v-icon name="loading" class="close-icon" @click="close"></v-icon>
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -18,6 +24,7 @@ import {
   onMounted,
   getCurrentInstance,
 } from 'vue'
+import vIcon from '@/components/icon/icon'
 
 const { proxy } = getCurrentInstance()
 const props = defineProps({
@@ -25,29 +32,33 @@ const props = defineProps({
     type: String,
     default: '',
   },
+  type: {
+    type: String,
+    default: 'info',
+  },
   duration: {
     type: Number,
     default: 3000,
   },
+  autoClose: {
+    type: Boolean,
+    default: true,
+  },
+  position: {
+    type: String,
+    default: 'top',
+  },
 })
 const { close } = proxy.$attrs
 onMounted(() => {
-  setTimeout(() => {
-    close()
-  }, props.duration)
+  if (props.autoClose) {
+    setTimeout(() => {
+      close()
+    }, props.duration)
+  }
 })
 </script>
 
 <style scoped lang="scss">
-// @use './toast.scss';
-.v-toast {
-  position: absolute;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 300px;
-  height: 46px;
-  background: pink;
-  color: #000;
-}
+@use './toast.scss';
 </style>
