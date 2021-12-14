@@ -6,12 +6,14 @@
         <v-tabs-nav>
           <v-tabs-item name="index">首页</v-tabs-item>
           <v-tabs-item name="info">资讯</v-tabs-item>
-          <v-tabs-item name="course">课程</v-tabs-item>
+          <v-tabs-item name="course">快上课啦</v-tabs-item>
+          <v-tabs-item name="net">网易号</v-tabs-item>
         </v-tabs-nav>
         <v-tabs-content>
           <v-tabs-panel name="index">首页内容</v-tabs-panel>
           <v-tabs-panel name="info">资讯内容</v-tabs-panel>
-          <v-tabs-panel name="course">课程内容</v-tabs-panel>
+          <v-tabs-panel name="course">快上课啦内容</v-tabs-panel>
+          <v-tabs-panel name="net">网易号内容</v-tabs-panel>
         </v-tabs-content>
       </v-tabs>
     </div>

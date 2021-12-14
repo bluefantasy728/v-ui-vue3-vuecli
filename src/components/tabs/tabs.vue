@@ -28,4 +28,6 @@ provide('emitter', emitter)
 
 <style scoped lang="scss">
 @use './tabs.scss';
+.v-tabs {
+}
 </style>
