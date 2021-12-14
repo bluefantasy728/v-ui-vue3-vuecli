@@ -1,14 +1,15 @@
+@use 'sass:math';
 @import '../../style/index.scss';
 .v-col {
   @for $i from 1 through 24 {
     &.v-col-#{$i} {
-      width: (($i / 24) * 100) * 1%;
+      width: (math.div($i, 24) * 100) * 1%;
     }
   }
   @media (max-width: 576px) {
     @for $i from 1 through 24 {
       &.v-col-phone-#{$i} {
-        width: (($i / 24) * 100) * 1%;
+        width: (math.div($i, 24) * 100) * 1%;
       }
     }
   }

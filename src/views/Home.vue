@@ -1,5 +1,20 @@
 <template>
   <div class="page">
+    <div class="section section-tabs">
+      <h4>Tabs</h4>
+      <v-tabs selected="index">
+        <v-tabs-nav>
+          <v-tabs-item name="index">首页</v-tabs-item>
+          <v-tabs-item name="info">资讯</v-tabs-item>
+          <v-tabs-item name="course">课程</v-tabs-item>
+        </v-tabs-nav>
+        <v-tabs-content>
+          <v-tabs-panel name="index">首页内容</v-tabs-panel>
+          <v-tabs-panel name="info">资讯内容</v-tabs-panel>
+          <v-tabs-panel name="course">课程内容</v-tabs-panel>
+        </v-tabs-content>
+      </v-tabs>
+    </div>
     <div class="section section-grid">
       <h4>Toast</h4>
       <v-button
@@ -83,7 +98,7 @@
           <v-icon class="right-icon" name="left"></v-icon>
         </v-button>
       </v-button-group>
-    </div>
+    </div>å
     <hr />
     <v-input v-model="inputVal"></v-input>
     <v-input disabled v-model="inputVal"></v-input>
