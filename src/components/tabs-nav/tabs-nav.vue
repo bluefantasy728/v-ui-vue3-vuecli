@@ -42,9 +42,7 @@ emitter.on('onSelect', ({ name, vm }) => {
   state.shuttleStyle.width = width + 'px'
 })
 
-onMounted(() => {
-  // console.log(proxy.$slots.default())
-})
+onMounted(() => {})
 
 const { shuttleStyle } = toRefs(state)
 </script>
