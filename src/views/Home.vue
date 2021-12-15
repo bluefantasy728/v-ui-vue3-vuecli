@@ -2,7 +2,7 @@
   <div class="page">
     <div class="section section-tabs">
       <h4>Tabs</h4>
-      <v-tabs selected="index">
+      <v-tabs :selected="tabName" @change="changeTabName">
         <v-tabs-nav>
           <v-tabs-item name="index">首页</v-tabs-item>
           <v-tabs-item name="info">资讯</v-tabs-item>
@@ -123,15 +123,19 @@ const { proxy } = getCurrentInstance()
 /***** 响应式数据 *****/
 const state = reactive({
   inputVal: '输入框内容',
+  tabName: 'info',
 })
 
 /***** 方法定义 *****/
 async function getData() {}
+const changeTabName = name => {
+  console.log(name)
+}
 
 /***** 声明周期和watch *****/
 onMounted(async () => {})
 
-const { inputVal } = toRefs(state)
+const { inputVal, tabName } = toRefs(state)
 </script>
 <style lang="scss">
 .v-input,

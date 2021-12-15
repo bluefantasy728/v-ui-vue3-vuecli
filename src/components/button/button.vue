@@ -4,7 +4,8 @@
       'v-button',
       type ? `v-button--${type}` : '',
       {
-        'is-disabled':disabled
+        'is-disabled':disabled,
+        'is-loading':loading
       }
     ]"
     :disabled="disabled"
@@ -36,8 +37,10 @@ const props = defineProps({
 </script>
 
 <script>
+import vIcon from '@/components/icon/icon.vue'
 export default {
   name: 'v-button',
+  components: { vIcon },
 }
 </script>
 

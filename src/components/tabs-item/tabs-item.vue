@@ -1,5 +1,10 @@
 <template>
-  <div class="v-tabs-item" @click="onClick">
+  <div :class="[
+    'v-tabs-item',
+    {
+      active,
+    }
+  ]" @click="onClick">
     <slot></slot>
   </div>
 </template>
@@ -10,8 +15,16 @@ export default {
 }
 </script>
 <script setup>
-import { computed, onMounted, getCurrentInstance, inject } from 'vue'
+import {
+  computed,
+  onMounted,
+  getCurrentInstance,
+  inject,
+  reactive,
+  toRefs,
+} from 'vue'
 const emitter = inject('emitter')
+const tabItemVms = inject('tabItemVms')
 const { proxy } = getCurrentInstance()
 const props = defineProps({
   name: {
@@ -19,11 +32,23 @@ const props = defineProps({
     default: '',
   },
 })
+const state = reactive({
+  active: false,
+})
 
 const onClick = () => {
-  // console.log(props.name)
   emitter.emit('onSelect', { name: props.name, vm: proxy })
 }
+emitter.on('onSelect', ({ name }) => {
+  state.active = name === props.name
+})
+
+onMounted(() => {
+  // console.log(tabItemVms)
+  tabItemVms.value.push(proxy)
+})
+
+const { active } = toRefs(state)
 </script>
 
 <style scoped lang="scss">
@@ -41,7 +66,8 @@ const onClick = () => {
   &:nth-last-of-type(1) {
     padding-right: 0;
   }
-  &:hover {
+  &:hover,
+  &.active {
     color: $color-primary;
   }
 }

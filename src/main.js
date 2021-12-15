@@ -5,7 +5,7 @@ import store from './store'
 import upperFirst from 'lodash/upperFirst'
 import camelCase from 'lodash/camelCase'
 import plugin from './plugin'
-console.log(plugin)
+// console.log(plugin)
 // import config from './config';
 // import mitt from 'mitt';
 
@@ -44,7 +44,7 @@ requireComponent.keys().forEach(fileName => {
     ?.split('/')
     ?.pop()
     ?.replace(/\.\w+$/, '')
-  console.log(`v-${componentName}`)
+  // console.log(`v-${componentName}`)
   // console.log(componentConfig.default);
 
   // 全局注册组件
