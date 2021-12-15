@@ -15,8 +15,6 @@
   </button>
 </template>
 <script setup>
-import { defineProps } from 'vue';
-
 const props = defineProps({
   type: {
     type: String,
@@ -34,13 +32,13 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-});
+})
 </script>
 
 <script>
 export default {
   name: 'v-button',
-};
+}
 </script>
 
 <style scoped lang="scss">

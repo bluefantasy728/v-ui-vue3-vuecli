@@ -11,13 +11,7 @@ export default {
 </script>
 <script setup>
 import mitt from 'mitt'
-import {
-  defineProps,
-  computed,
-  onMounted,
-  getCurrentInstance,
-  provide,
-} from 'vue'
+import { computed, onMounted, getCurrentInstance, provide } from 'vue'
 
 const { proxy } = getCurrentInstance()
 const props = defineProps({})

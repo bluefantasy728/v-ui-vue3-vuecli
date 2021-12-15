@@ -10,13 +10,7 @@ export default {
 }
 </script>
 <script setup>
-import {
-  defineProps,
-  computed,
-  onMounted,
-  getCurrentInstance,
-  inject,
-} from 'vue'
+import { computed, onMounted, getCurrentInstance, inject } from 'vue'
 const emitter = inject('emitter')
 const { proxy } = getCurrentInstance()
 const props = defineProps({

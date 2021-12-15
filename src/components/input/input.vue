@@ -21,7 +21,6 @@ export default {
 }
 </script>
 <script setup>
-import { defineProps, defineEmits } from 'vue'
 const props = defineProps({
   modelValue: {
     type: String,

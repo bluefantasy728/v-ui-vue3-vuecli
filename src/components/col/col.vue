@@ -10,7 +10,7 @@ export default {
 }
 </script>
 <script setup>
-import { defineProps, inject, computed } from 'vue'
+import { inject, computed } from 'vue'
 const props = defineProps({
   span: {
     type: Number,

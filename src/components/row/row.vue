@@ -17,7 +17,7 @@ export default {
 }
 </script>
 <script setup>
-import { defineProps, provide, computed } from 'vue'
+import { provide, computed } from 'vue'
 const props = defineProps({
   gutter: {
     type: Number,

@@ -17,13 +17,7 @@ export default {
 }
 </script>
 <script setup>
-import {
-  defineProps,
-  provide,
-  computed,
-  onMounted,
-  getCurrentInstance,
-} from 'vue'
+import { provide, computed, onMounted, getCurrentInstance } from 'vue'
 import vIcon from '@/components/icon/icon'
 
 const { proxy } = getCurrentInstance()

@@ -12,7 +12,6 @@ export default {
 </script>
 <script setup>
 import {
-  defineProps,
   computed,
   onMounted,
   getCurrentInstance,

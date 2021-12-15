@@ -10,7 +10,7 @@ export default {
 }
 </script>
 <script setup>
-import { defineProps, computed, onMounted, getCurrentInstance } from 'vue'
+import { computed, onMounted, getCurrentInstance } from 'vue'
 
 const { proxy } = getCurrentInstance()
 const props = defineProps({})
