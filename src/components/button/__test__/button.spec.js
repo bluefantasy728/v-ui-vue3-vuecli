@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import Button from '../button.vue'
+import Button from '@/components/button/button.vue'
 // import ButtonGroup from '../button-group.vue'
 const TEXT = 'Every Little Thing'
 describe('button.vue', () => {
