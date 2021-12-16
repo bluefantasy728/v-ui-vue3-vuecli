@@ -34,4 +34,12 @@ vue3 取消了$children，不能直接拿子组件里的各种方法和 data 了
 另外，如果子组件是通过 slot 传的，要拿子组件的数据就有点麻烦了，要不通过 mitt，父组件监听，子组件触发。如果想拿到子组件实例，可以通过 provide
 https://www.jianshu.com/p/a777d61ce10d
 
+发现 provide 其实可以直接传方法的，所以在最上层的 tabs 组件中将改变 selected 值得方法放到 provide 里传递到下面所有的子孙组件，点击某个 tab-item 的时候就调这个方法
+另外，`v-model:selected` 可以实现双向绑定的同时也定义了 props 的名称是 selected。然后声明 emit 的时候加入前缀`update:`
+
+```
+const emit = defineEmits(['update:selected'])
+emit('update:selected', name)
+```
+
 ---

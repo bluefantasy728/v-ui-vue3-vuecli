@@ -23,6 +23,7 @@ import {
 
 const { proxy } = getCurrentInstance()
 const props = defineProps({})
+const selectedName = inject('selectedName')
 const state = reactive({
   shuttleStyle: {
     width: 0,
@@ -31,7 +32,6 @@ const state = reactive({
 })
 
 const changeSuttlePosition = tabItemVm => {
-  console.log(tabItemVm)
   const dom = tabItemVm.$el
   const computedStyle = getComputedStyle(dom)
   const paddingLeft = parseInt(computedStyle.paddingLeft)
@@ -49,29 +49,4 @@ const { shuttleStyle } = toRefs(state)
 
 <style scoped lang="scss">
 @use './tabs-nav.scss';
-@import '../../style/index.scss';
-.v-tabs-nav {
-  display: flex;
-  position: relative;
-  &::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 2px;
-    background-color: #e4e7ed;
-    z-index: 1;
-  }
-  .v-tabs-shuttle {
-    position: absolute;
-    height: 2px;
-    background: $color-primary;
-    width: 100px;
-    left: 0;
-    bottom: 0px;
-    transition: transform 0.2s;
-    z-index: 2;
-  }
-}
 </style>

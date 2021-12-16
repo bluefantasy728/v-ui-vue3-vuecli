@@ -10,7 +10,14 @@ export default {
 }
 </script>
 <script setup>
-import { ref, computed, onMounted, getCurrentInstance, provide } from 'vue'
+import {
+  ref,
+  computed,
+  onMounted,
+  getCurrentInstance,
+  provide,
+  watch,
+} from 'vue'
 
 const { proxy } = getCurrentInstance()
 const props = defineProps({
@@ -24,7 +31,9 @@ const emit = defineEmits(['update:selected', 'change'])
 
 const selectedName = ref(props.selected)
 const changeName = name => {
+  selectedName.value = name
   emit('update:selected', name)
+  emit('change', name)
 }
 
 provide('selectedName', selectedName)

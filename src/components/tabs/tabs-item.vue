@@ -16,6 +16,7 @@ export default {
 </script>
 <script setup>
 import {
+  ref,
   computed,
   onMounted,
   getCurrentInstance,
@@ -34,35 +35,20 @@ const props = defineProps({
     default: '',
   },
 })
-const state = reactive({
-  active: false,
-})
-const active = computed(() => selectedName === props.name)
+const active = computed(() => selectedName.value === props.name)
 
 const onClick = () => {
   changeName(props.name)
   changeSuttlePosition(proxy)
 }
+
+onMounted(() => {
+  if (selectedName.value === props.name) {
+    onClick()
+  }
+})
 </script>
 
 <style scoped lang="scss">
 @use './tabs-item.scss';
-@import '../../style/index.scss';
-.v-tabs-item {
-  font-weight: 500;
-  padding: 0 20px;
-  height: 40px;
-  line-height: 40px;
-  cursor: pointer;
-  &:nth-of-type(1) {
-    padding-left: 0;
-  }
-  &:nth-last-of-type(1) {
-    padding-right: 0;
-  }
-  &:hover,
-  &.active {
-    color: $color-primary;
-  }
-}
 </style>

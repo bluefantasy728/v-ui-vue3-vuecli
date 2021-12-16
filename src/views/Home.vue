@@ -118,7 +118,7 @@ const { proxy } = getCurrentInstance()
 /***** 响应式数据 *****/
 const state = reactive({
   inputVal: '输入框内容',
-  tabName: 'info',
+  tabName: 'net',
 })
 
 /***** 方法定义 *****/
