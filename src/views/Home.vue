@@ -2,7 +2,7 @@
   <div class="page">
     <div class="section section-tabs">
       <h4>Tabs</h4>
-      <v-tabs :selected="tabName" @change="changeTabName">
+      <v-tabs v-model:selected="tabName" @change="changeTabName">
         <v-tabs-nav>
           <v-tabs-item name="index">首页</v-tabs-item>
           <v-tabs-item name="info">资讯</v-tabs-item>
@@ -114,11 +114,6 @@ import { useStore } from 'vuex'
 
 const store = useStore()
 const { proxy } = getCurrentInstance()
-// console.log('proxy', proxy);
-// console.log(proxy.mixinVar);
-// proxy.$emitter.on('myEvent', msg => {
-//   console.log(msg);
-// });
 
 /***** 响应式数据 *****/
 const state = reactive({

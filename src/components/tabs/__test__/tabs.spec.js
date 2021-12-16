@@ -1,6 +1,7 @@
+import { nextTick } from 'vue'
 import { mount } from '@vue/test-utils'
 import Tabs from '@/components/tabs/tabs.vue'
-import TabsNav from '@/components/tabs-panel/tabs-panel.vue'
+import TabsNav from '@/components/tabs-nav/tabs-nav.vue'
 import TabsItem from '@/components/tabs-item/tabs-item.vue'
 import TabsContent from '@/components/tabs-content/tabs-content.vue'
 import TabsPanel from '@/components/tabs-panel/tabs-panel.vue'
@@ -14,8 +15,13 @@ describe('tabs.vue', () => {
         'v-tabs-item': TabsItem,
         'v-tabs-content': TabsContent,
       },
+      data() {
+        return {
+          tabName: 'course',
+        }
+      },
       template: `
-        <v-tabs _selected="tabName" _change="changeTabName">
+        <v-tabs :selected="tabName" _change="changeTabName">
           <v-tabs-nav>
             <v-tabs-item name="index">首页</v-tabs-item>
             <v-tabs-item name="info">资讯</v-tabs-item>
@@ -32,10 +38,17 @@ describe('tabs.vue', () => {
       `,
     })
 
+    console.log(wrapper)
+
     const navWrapper = wrapper.findComponent(TabsNav)
     const contentWrapper = wrapper.findComponent(TabsContent)
 
-    console.log(navWrapper.exists())
-    console.log(contentWrapper)
+    await nextTick()
+
+    const tabItems = navWrapper.findAll('.v-tabs-item')
+
+    tabItems.forEach(tab => {
+      console.log(tab.classes())
+    })
   })
 })

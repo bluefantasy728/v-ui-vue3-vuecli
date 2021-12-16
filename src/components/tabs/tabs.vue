@@ -10,15 +10,7 @@ export default {
 }
 </script>
 <script setup>
-import mitt from 'mitt'
-import {
-  ref,
-  computed,
-  onMounted,
-  getCurrentInstance,
-  provide,
-  useSlots,
-} from 'vue'
+import { ref, computed, onMounted, getCurrentInstance, provide } from 'vue'
 
 const { proxy } = getCurrentInstance()
 const props = defineProps({
@@ -27,23 +19,16 @@ const props = defineProps({
     default: '',
   },
 })
-const emitter = mitt()
-provide('emitter', emitter)
 
-// 收集组件下面所有tabItem的vm实例
-const tabItemVms = ref([])
-provide('tabItemVms', tabItemVms)
+const emit = defineEmits(['update:selected', 'change'])
 
-const emit = defineEmits(['change'])
+const selectedName = ref(props.selected)
+const changeName = name => {
+  emit('update:selected', name)
+}
 
-emitter.on('onSelect', ({ name }) => {
-  emit('change', name)
-})
-
-onMounted(() => {
-  const tab = tabItemVms.value.find(vm => vm.name === props.selected)
-  emitter.emit('onSelect', { name: 'info', vm: tab })
-})
+provide('selectedName', selectedName)
+provide('changeName', changeName)
 </script>
 
 <style scoped lang="scss">

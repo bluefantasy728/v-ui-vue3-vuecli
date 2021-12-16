@@ -18,7 +18,7 @@ import {
   toRefs,
   inject,
 } from 'vue'
-const emitter = inject('emitter')
+const selectedName = inject('selectedName')
 
 const { proxy } = getCurrentInstance()
 const props = defineProps({
@@ -27,17 +27,6 @@ const props = defineProps({
     default: '',
   },
 })
-
-const state = reactive({
-  selectedName: '',
-})
-
-emitter.on('onSelect', ({ name }) => {
-  console.log(name)
-  state.selectedName = name
-})
-
-const { selectedName } = toRefs(state)
 </script>
 
 <style scoped lang="scss">

@@ -23,8 +23,10 @@ import {
   reactive,
   toRefs,
 } from 'vue'
-const emitter = inject('emitter')
-const tabItemVms = inject('tabItemVms')
+const changeSuttlePosition = inject('changeSuttlePosition')
+const selectedName = inject('selectedName')
+const changeName = inject('changeName')
+
 const { proxy } = getCurrentInstance()
 const props = defineProps({
   name: {
@@ -35,20 +37,12 @@ const props = defineProps({
 const state = reactive({
   active: false,
 })
+const active = computed(() => selectedName === props.name)
 
 const onClick = () => {
-  emitter.emit('onSelect', { name: props.name, vm: proxy })
+  changeName(props.name)
+  changeSuttlePosition(proxy)
 }
-emitter.on('onSelect', ({ name }) => {
-  state.active = name === props.name
-})
-
-onMounted(() => {
-  // console.log(tabItemVms)
-  tabItemVms.value.push(proxy)
-})
-
-const { active } = toRefs(state)
 </script>
 
 <style scoped lang="scss">

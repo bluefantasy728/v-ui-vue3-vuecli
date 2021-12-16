@@ -16,10 +16,10 @@ import {
   onMounted,
   getCurrentInstance,
   reactive,
+  provide,
   inject,
   toRefs,
 } from 'vue'
-const emitter = inject('emitter')
 
 const { proxy } = getCurrentInstance()
 const props = defineProps({})
@@ -30,8 +30,9 @@ const state = reactive({
   },
 })
 
-emitter.on('onSelect', ({ name, vm }) => {
-  const dom = vm.$el
+const changeSuttlePosition = tabItemVm => {
+  console.log(tabItemVm)
+  const dom = tabItemVm.$el
   const computedStyle = getComputedStyle(dom)
   const paddingLeft = parseInt(computedStyle.paddingLeft)
   const paddingRight = parseInt(computedStyle.paddingRight)
@@ -39,9 +40,9 @@ emitter.on('onSelect', ({ name, vm }) => {
   const left = dom.offsetLeft + paddingLeft
   state.shuttleStyle.transform = `translateX(${left}px)`
   state.shuttleStyle.width = width + 'px'
-})
+}
 
-onMounted(() => {})
+provide('changeSuttlePosition', changeSuttlePosition)
 
 const { shuttleStyle } = toRefs(state)
 </script>
