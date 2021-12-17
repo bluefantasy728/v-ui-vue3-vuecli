@@ -2,7 +2,12 @@
   <div class="page">
     <div class="section section-tabs">
       <h4>Popover</h4>
-      <v-popover>显示popover的内容</v-popover>
+      <v-popover>
+        <template #trigger>
+          <div class="trigger-btn">Every Little Thing</div>
+        </template>
+        显示popover的内容
+      </v-popover>
       <v-popover trigger="hover">显示popover的内容</v-popover>
     </div>
     <div class="section section-tabs">

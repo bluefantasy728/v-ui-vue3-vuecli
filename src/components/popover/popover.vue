@@ -90,40 +90,4 @@ export default {
 
 <style scoped lang="scss">
 @use 'popover.scss';
-@import '../../style/index.scss';
-.v-popover {
-  display: inline-block;
-  vertical-align: middle;
-}
-.v-popover-content {
-  width: 150px;
-  padding: 10px;
-  position: absolute;
-  transform: translateY(-100%);
-  z-index: 999;
-  border: 1px solid $border-color-base;
-  background: #fff;
-  box-sizing: border-box;
-  font-size: 13px;
-  border-radius: 4px;
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-  .popper-arrow {
-    width: 10px;
-    height: 10px;
-    position: absolute;
-    left: 0;
-    bottom: -4px;
-    &::after {
-      content: '';
-      display: block;
-      width: 10px;
-      height: 10px;
-      transform: rotate(45deg);
-      background: #fff;
-      border: 1px solid $border-color-base;
-      border-top-color: transparent;
-      border-left-color: transparent;
-    }
-  }
-}
 </style>
