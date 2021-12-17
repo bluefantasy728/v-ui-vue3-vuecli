@@ -1,6 +1,11 @@
 <template>
   <div class="page">
     <div class="section section-tabs">
+      <h4>Popover</h4>
+      <v-popover>显示popover的内容</v-popover>
+      <v-popover trigger="hover">显示popover的内容</v-popover>
+    </div>
+    <div class="section section-tabs">
       <h4>Tabs</h4>
       <v-tabs v-model:selected="tabName" @change="changeTabName">
         <v-tabs-nav>
