@@ -1,5 +1,13 @@
 <template>
   <div class="page">
+    <div class="section section-collapse">
+      <h4>Collapse</h4>
+      <v-collapse v-model:selected="collapseName" is-single>
+        <v-collapse-item title="标题1" name="1">内容1</v-collapse-item>
+        <v-collapse-item title="标题2" name="2">内容2</v-collapse-item>
+        <v-collapse-item title="标题3" name="3">内容3</v-collapse-item>
+      </v-collapse>
+    </div>
     <div class="section section-tabs">
       <h4>Popover</h4>
       <v-popover>
@@ -129,18 +137,19 @@ const { proxy } = getCurrentInstance()
 const state = reactive({
   inputVal: '输入框内容',
   tabName: 'net',
+  collapseName: '2',
 })
 
 /***** 方法定义 *****/
 async function getData() {}
 const changeTabName = name => {
-  console.log(name)
+  // console.log(name)
 }
 
 /***** 声明周期和watch *****/
 onMounted(async () => {})
 
-const { inputVal, tabName } = toRefs(state)
+const { inputVal, tabName, collapseName } = toRefs(state)
 </script>
 <style lang="scss">
 .v-input,
