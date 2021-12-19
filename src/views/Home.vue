@@ -3,16 +3,40 @@
     <div class="section section-collapse">
       <h4>Collapse</h4>
       <div class="flex">
-        <v-collapse v-model:selected="collapseName" is-single>
-          <v-collapse-item title="标题1" name="1">内容1</v-collapse-item>
-          <v-collapse-item title="标题2" name="2">内容2</v-collapse-item>
-          <v-collapse-item title="标题3" name="3">内容3</v-collapse-item>
-        </v-collapse>
-        <v-collapse v-model:selected="collapseNameArr">
-          <v-collapse-item title="标题1" name="1">内容1</v-collapse-item>
-          <v-collapse-item title="标题2" name="2">内容2</v-collapse-item>
-          <v-collapse-item title="标题3" name="3">内容3</v-collapse-item>
-        </v-collapse>
+        <div style="width: 500px" class="mr90">
+          <v-collapse v-model:selected="collapseName" is-single>
+            <v-collapse-item title="一致性 Consistency" name="1">
+              <div>与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；</div>
+              <div>在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。</div>
+            </v-collapse-item>
+            <v-collapse-item title="反馈 Feedback" name="2">
+              <div>控制反馈：通过界面样式和交互动效让用户可以清晰的感知自己的操作；</div>
+              <div>页面反馈：操作后，通过页面元素的变化清晰地展现当前状态。</div>
+            </v-collapse-item>
+            <v-collapse-item title="效率 Efficiency" name="3">
+              <div>简化流程：设计简洁直观的操作流程；</div>
+              <div>清晰明确：语言表达清晰且表意明确，让用户快速理解进而作出决策；</div>
+              <div>帮助用户识别：界面简单直白，让用户快速识别而非回忆，减少用户记忆负担。</div>
+            </v-collapse-item>
+          </v-collapse>
+        </div>
+        <div style="width: 500px">
+          <v-collapse v-model:selected="collapseNameArr">
+            <v-collapse-item title="一致性 Consistency" name="1">
+              <div>与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；</div>
+              <div>在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。</div>
+            </v-collapse-item>
+            <v-collapse-item title="反馈 Feedback" name="2">
+              <div>控制反馈：通过界面样式和交互动效让用户可以清晰的感知自己的操作；</div>
+              <div>页面反馈：操作后，通过页面元素的变化清晰地展现当前状态。</div>
+            </v-collapse-item>
+            <v-collapse-item title="效率 Efficiency" name="3">
+              <div>简化流程：设计简洁直观的操作流程；</div>
+              <div>清晰明确：语言表达清晰且表意明确，让用户快速理解进而作出决策；</div>
+              <div>帮助用户识别：界面简单直白，让用户快速识别而非回忆，减少用户记忆负担。</div>
+            </v-collapse-item>
+          </v-collapse>
+        </div>
       </div>
     </div>
     <div class="section section-tabs">
@@ -46,19 +70,28 @@
       <h4>Toast</h4>
       <v-button
         type="primary"
-        @click="$toast.success('Top success',{duration:2000,position:'top'})"
+        @click="
+          $toast.success('Top success', { duration: 2000, position: 'top' })
+        "
       >top success</v-button>
       <v-button
         type="warning"
-        @click="$toast.warning('Bottom warning',{duration:2000,position:'bottom'})"
+        @click="
+          $toast.warning('Bottom warning', {
+            duration: 2000,
+            position: 'bottom',
+          })
+        "
       >bottom warning</v-button>
       <v-button
         type="info"
-        @click="$toast.info('left info',{duration:2000,position:'left'})"
+        @click="$toast.info('left info', { duration: 2000, position: 'left' })"
       >left info</v-button>
       <v-button
         type="danger"
-        @click="$toast.error('right error',{duration:2000,position:'right'})"
+        @click="
+          $toast.error('right error', { duration: 2000, position: 'right' })
+        "
       >right error</v-button>
     </div>
     <div class="section section-grid">
@@ -68,9 +101,9 @@
         <v-col :span="12"></v-col>
       </v-row>
       <v-row :gutter="20">
-        <v-col :span="8" :phone="{span:2}"></v-col>
-        <v-col :span="8" :phone="{span:12}"></v-col>
-        <v-col :span="8" :phone="{span:10}"></v-col>
+        <v-col :span="8" :phone="{ span: 2 }"></v-col>
+        <v-col :span="8" :phone="{ span: 12 }"></v-col>
+        <v-col :span="8" :phone="{ span: 10 }"></v-col>
       </v-row>
       <v-row>
         <v-col :span="2"></v-col>
@@ -145,7 +178,7 @@ const state = reactive({
   inputVal: '输入框内容',
   tabName: 'net',
   collapseName: '2',
-  collapseNameArr: ['1'],
+  collapseNameArr: ['1', '3'],
 })
 
 /***** 方法定义 *****/

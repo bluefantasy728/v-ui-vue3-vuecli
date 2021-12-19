@@ -52,6 +52,7 @@ const onClickTitle = () => {
 
 <style scoped lang="scss">
 @use 'collapse-item.scss';
+@import '../../style/index.scss';
 .v-collapse-item {
   .v-collapse-title {
     padding: 10px;
@@ -59,6 +60,10 @@ const onClickTitle = () => {
   }
   .v-collapse-content {
     padding: 10px;
+  }
+  border-bottom: 1px solid $color-text-placeholder;
+  &:nth-last-of-type(1) {
+    border-bottom: none;
   }
 }
 </style>
