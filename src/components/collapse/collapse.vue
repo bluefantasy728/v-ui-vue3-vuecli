@@ -25,7 +25,6 @@ const props = defineProps({
 const emit = defineEmits(['update:selected'])
 const selected = ref(props.selected)
 const changeSelected = name => {
-  console.log(name)
   selected.value = name
   emit('update:selected', name)
 }

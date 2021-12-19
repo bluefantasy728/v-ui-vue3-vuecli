@@ -19,7 +19,7 @@ const props = defineProps({
     default: '',
   },
   name: {
-    type: [String, Number],
+    type: String,
     default: '',
   },
 })
@@ -29,7 +29,7 @@ const changeSelected = inject('changeSelected')
 const isSingle = inject('isSingle')
 
 const isOpen = computed(() => {
-  if (isSingle) {
+  if (isSingle.value) {
     return props.name === selected.value
   } else {
     return selected.value.includes(props.name)
@@ -37,26 +37,16 @@ const isOpen = computed(() => {
 })
 
 const onClickTitle = () => {
-  if (isOpen.value) {
-    console.log(selected.value)
-    changeSelected('')
+  const _isOpen = isOpen.value
+  const _isSingle = isSingle.value
+  const _selected = selected.value
+  if (_isSingle) {
+    changeSelected(_isOpen ? '' : props.name)
   } else {
-    changeSelected(props.name)
-    console.log(selected.value)
+    const index = _selected.indexOf(props.name)
+    index < 0 ? _selected.push(props.name) : _selected.splice(index, 1)
+    changeSelected(_selected)
   }
-  if (isSingle) {
-    // isOpen.value = !isOpen.value
-  } else {
-  }
-  // if (isOpen.value) {
-  //   changeSelected(props.name)
-  // } else {
-  //   changeSelected('')
-  // }
-  // isOpen.value = !isOpen.value
-  // if (isSingle && props.name !== selectedName) {
-  //   isOpen.value = false
-  // }
 }
 </script>
 
