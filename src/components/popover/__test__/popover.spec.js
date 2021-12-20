@@ -1,4 +1,3 @@
-import { nextTick } from 'vue'
 import { mount } from '@vue/test-utils'
 import Popover from '@/components/popover/popover.vue'
 const TEXT = 'Every Little Thing'
@@ -31,22 +30,4 @@ describe('popover.vue', () => {
     await triggerWrapper.trigger('click')
     expect(popContentWrapper.style.display).toBe('')
   })
-  // it('render text', () => {
-  //   const wrapper = mount(Popover, {
-  //     slots: {
-  //       default: CONTENT,
-  //       trigger: TEXT,
-  //     },
-  //   })
-  //   expect(wrapper.text()).toEqual(TEXT)
-  // })
-  // it('点击触发事件', async () => {
-  //   const wrapper = mount(Button, {
-  //     slots: {
-  //       default: TEXT,
-  //     },
-  //   })
-  //   await wrapper.trigger('click')
-  //   expect(wrapper.emitted()).toBeDefined()
-  // })
 })

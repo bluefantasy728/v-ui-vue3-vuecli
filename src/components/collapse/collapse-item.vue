@@ -1,5 +1,10 @@
 <template>
-  <div class="v-collapse-item">
+  <div :class="[
+    'v-collapse-item',
+    {
+      'is-active':isOpen
+    }
+  ]">
     <div class="v-collapse-title" @click="onClickTitle">{{title}}</div>
     <div class="v-collapse-content" ref="contentRef">
       <slot></slot>
