@@ -1,5 +1,9 @@
 <template>
   <div class="page">
+    <div class="section section-cascader">
+      <h4>Cascader</h4>
+      <v-cascader v-model:list="cascaderResult" :options="cascaderOptions"></v-cascader>
+    </div>
     <div class="section section-collapse">
       <h4>Collapse</h4>
       <div class="flex">
@@ -170,6 +174,8 @@
 import { reactive, toRefs, onMounted, computed, getCurrentInstance } from 'vue'
 import { useStore } from 'vuex'
 
+const _cascaderOptions = require('@/assets/cascaderOptions.js')
+
 const store = useStore()
 const { proxy } = getCurrentInstance()
 
@@ -179,6 +185,8 @@ const state = reactive({
   tabName: 'net',
   collapseName: '2',
   collapseNameArr: ['1', '3'],
+  cascaderResult: [],
+  cascaderOptions: _cascaderOptions,
 })
 
 /***** 方法定义 *****/
@@ -190,7 +198,14 @@ const changeTabName = name => {
 /***** 声明周期和watch *****/
 onMounted(async () => {})
 
-const { inputVal, tabName, collapseName, collapseNameArr } = toRefs(state)
+const {
+  inputVal,
+  tabName,
+  collapseName,
+  collapseNameArr,
+  cascaderResult,
+  cascaderOptions,
+} = toRefs(state)
 </script>
 <style lang="scss">
 @use '../style/helper.scss';
