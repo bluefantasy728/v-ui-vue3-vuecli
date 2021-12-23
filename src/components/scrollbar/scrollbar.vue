@@ -1,5 +1,5 @@
 <template>
-  <div :class="[
+  <div v-click-outside :class="[
       'v-scrollbar',
     ]">
     <div ref="wrapRef" class="v-scrollbar-wrap" @scroll="handleScroll">
@@ -16,7 +16,9 @@ export default {
 </script>
 <script setup>
 import { ref, onMounted, nextTick } from 'vue'
+import vClickOutside from '@/directives/click-outside'
 import vScrollbarBar from './bar.vue'
+console.log(vClickOutside)
 const props = defineProps({})
 
 const wrapRef = ref(null)
@@ -31,9 +33,6 @@ const update = () => {
 
   const originalHeight = offsetHeight ** 2 / wrapRef.value.scrollHeight
   const height = Math.max(originalHeight, 20)
-  console.log('offsetHeight', offsetHeight)
-  console.log('scrollHeight', wrapRef.value.scrollHeight)
-  console.log('originalHeight', originalHeight)
   ratioY.value =
     originalHeight /
     (offsetHeight - originalHeight) /
@@ -43,7 +42,6 @@ const update = () => {
 }
 
 const handleScroll = () => {
-  console.log(wrapRef.value.scrollTop)
   if (wrapRef.value) {
     const offsetHeight = wrapRef.value.offsetHeight - GAP
     moveY.value =

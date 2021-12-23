@@ -1,9 +1,8 @@
 <template>
-  <div :class="[
+  <div ref="barRef" :class="[
       'v-scrollbar-bar',
-      
-  ]">
-    <div class="v-scrollbar-thumb" :style="thumbStyle"></div>
+  ]" @click="clickTrackHandler">
+    <div ref="thumbRef" class="v-scrollbar-thumb" :style="thumbStyle"></div>
   </div>
 </template>
 
@@ -13,17 +12,28 @@ export default {
 }
 </script>
 <script setup>
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 const props = defineProps({
   move: Number,
   ratio: Number,
   size: String,
 })
+
+const barRef = ref(null)
+const thumbRef = ref(null)
+
+const offsetRatio = computed(() => barRef.value.offsetHeight)
+
 const thumbStyle = computed(() => ({
   transform: `translateY(${props.move}%)`,
   height: props.size,
-  // height: '130px',
 }))
+
+const clickTrackHandler = e => {
+  // console.log(e.clientY)
+  // console.log(thumbRef.value.offsetHeight)
+  console.log(barRef.value['offsetHeight'] ** 2 / 3)
+}
 </script>
 
 <style scoped lang="scss">
