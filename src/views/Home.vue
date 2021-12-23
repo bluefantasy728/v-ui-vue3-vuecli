@@ -1,8 +1,16 @@
 <template>
   <div class="page">
+    <div class="section section-scrollbar">
+      <h4>Scrollbar</h4>
+      <v-scrollbar>
+        <ul style="width:200px;margin:0;padding:0;">
+          <li v-for="i in 20" :key="i" style="height:30px">选项{{i}}</li>
+        </ul>
+      </v-scrollbar>
+    </div>
     <div class="section section-cascader">
       <h4>Cascader</h4>
-      <v-cascader v-model:list="cascaderResult" :options="cascaderOptions"></v-cascader>
+      <v-cascader v-model="cascaderResult" :options="cascaderOptions"></v-cascader>
     </div>
     <div class="section section-collapse">
       <h4>Collapse</h4>
@@ -162,7 +170,7 @@
           <v-icon class="right-icon" name="left"></v-icon>
         </v-button>
       </v-button-group>
-    </div>å
+    </div>
     <hr />
     <v-input v-model="inputVal"></v-input>
     <v-input disabled v-model="inputVal"></v-input>
@@ -185,7 +193,7 @@ const state = reactive({
   tabName: 'net',
   collapseName: '2',
   collapseNameArr: ['1', '3'],
-  cascaderResult: [],
+  cascaderResult: ['zujian', 'form', 'input'],
   cascaderOptions: _cascaderOptions,
 })
 

@@ -2,20 +2,53 @@
   <div :class="[
       'v-cascader',
     ]">
+    {{labelList}}
     <div class="v-cascader-wrapper">
       <v-cascader-item :options="options"></v-cascader-item>
     </div>
   </div>
 </template>
 <script setup>
+import { provide, ref, reactive, onMounted, toRefs, computed } from 'vue'
+import cloneDeep from 'lodash.clonedeep'
 const props = defineProps({
-  list: {
+  modelValue: {
     type: Array,
   },
   options: {
     type: Array,
   },
 })
+const emit = defineEmits(['update:modelValue'])
+
+const state = reactive({
+  selected: cloneDeep(props.modelValue),
+})
+
+const selectNode = (level, value, isLast) => {
+  state.selected[level] = value
+  isLast && emit('update:modelValue', cloneDeep(state.selected))
+}
+
+provide('selected', state.selected)
+provide('selectNode', selectNode)
+
+const labelList = computed(() => {
+  const arr = []
+  let obj = {}
+  let list = props.options
+  state.selected.forEach((item, index) => {
+    if (!list) return
+    obj = list.find(optionItem => optionItem.value === item)
+    if (obj) {
+      arr[index] = obj.label
+      list = obj.children
+    }
+  })
+  return arr.join('/')
+})
+
+const { selected } = toRefs(state)
 </script>
 
 <script>

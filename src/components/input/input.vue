@@ -35,7 +35,7 @@ const props = defineProps({
     default: false,
   },
 })
-const emit = defineEmits(['update'])
+const emit = defineEmits(['update:modelValue'])
 
 function onChange(e) {
   emit('update:modelValue', e.target.value)
