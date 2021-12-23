@@ -20,7 +20,7 @@ const props = defineProps({
   size: String,
 })
 const thumbStyle = computed(() => ({
-  transform: `translateY(${props.move}px)`,
+  transform: `translateY(${props.move}%)`,
   height: props.size,
   // height: '130px',
 }))
@@ -34,8 +34,8 @@ const thumbStyle = computed(() => ({
   right: 2px;
   top: 2px;
   bottom: 2px;
-  // top: 0;
-  // bottom: 0;
+  top: 0;
+  height: 100%;
   width: 6px;
   border-radius: 4px;
   opacity: 0.3;
