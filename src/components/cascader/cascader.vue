@@ -1,15 +1,16 @@
 <template>
   <div :class="[
       'v-cascader',
-    ]">
-    {{labelList}}
-    <div class="v-cascader-wrapper">
+    ]" v-click-outside="close">
+    <v-input v-model="labelList" @click="open"></v-input>
+    <div class="v-cascader-wrapper" v-if="isOpen">
       <v-cascader-item :options="options"></v-cascader-item>
     </div>
   </div>
 </template>
 <script setup>
 import { provide, ref, reactive, onMounted, toRefs, computed } from 'vue'
+import vClickOutside from '@/directives/click-outside'
 import cloneDeep from 'lodash.clonedeep'
 const props = defineProps({
   modelValue: {
@@ -20,6 +21,14 @@ const props = defineProps({
   },
 })
 const emit = defineEmits(['update:modelValue'])
+
+const isOpen = ref(false)
+const close = () => {
+  isOpen.value = false
+}
+const open = () => {
+  isOpen.value = true
+}
 
 const state = reactive({
   selected: cloneDeep(props.modelValue),

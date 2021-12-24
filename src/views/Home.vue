@@ -1,5 +1,9 @@
 <template>
   <div class="page">
+    <div class="section section-select">
+      <h4>Select</h4>
+      <v-select :options="selectOptions"></v-select>
+    </div>
     <div class="section section-scrollbar">
       <h4>Scrollbar</h4>
       <v-scrollbar>
@@ -195,6 +199,7 @@ const state = reactive({
   collapseNameArr: ['1', '3'],
   cascaderResult: ['zujian', 'form', 'input'],
   cascaderOptions: _cascaderOptions,
+  selectOptions: _cascaderOptions,
 })
 
 /***** 方法定义 *****/
@@ -213,6 +218,7 @@ const {
   collapseNameArr,
   cascaderResult,
   cascaderOptions,
+  selectOptions,
 } = toRefs(state)
 </script>
 <style lang="scss">

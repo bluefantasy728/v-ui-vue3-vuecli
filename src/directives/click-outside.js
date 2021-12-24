@@ -1,42 +1,20 @@
+const cbs = []
+const handleClick = e => {
+  cbs.forEach(item => {
+    if (item.el === e.target || item.el.contains(e.target)) return
+    item.cb()
+  })
+}
+document.addEventListener('click', handleClick)
+
 const ClickOutside = {
   mounted(el, binding) {
-    // el.innerHTML = 'hahahahah'
+    cbs.push({
+      el,
+      cb: binding.value,
+    })
   },
-  beforeMount(el, binding) {
-    // there could be multiple handlers on the element
-    // if (!nodeList.has(el)) {
-    //   nodeList.set(el, [])
-    // }
-    // nodeList.get(el).push({
-    //   documentHandler: createDocumentHandler(el, binding),
-    //   bindingFn: binding.value,
-    // })
-  },
-  // updated(el, binding) {
-  //   if (!nodeList.has(el)) {
-  //     nodeList.set(el, [])
-  //   }
-
-  //   const handlers = nodeList.get(el)
-  //   const oldHandlerIndex = handlers.findIndex(
-  //     item => item.bindingFn === binding.oldValue
-  //   )
-  //   const newHandler = {
-  //     documentHandler: createDocumentHandler(el, binding),
-  //     bindingFn: binding.value,
-  //   }
-
-  //   if (oldHandlerIndex >= 0) {
-  //     // replace the old handler to the new handler
-  //     handlers.splice(oldHandlerIndex, 1, newHandler)
-  //   } else {
-  //     handlers.push(newHandler)
-  //   }
-  // },
-  // unmounted(el) {
-  //   // remove all listeners when a component unmounted
-  //   nodeList.delete(el)
-  // },
+  unmounted(el) {},
 }
 
 export default ClickOutside

@@ -1,5 +1,5 @@
 <template>
-  <div v-click-outside :class="[
+  <div :class="[
       'v-scrollbar',
     ]">
     <div ref="wrapRef" class="v-scrollbar-wrap" @scroll="handleScroll">
@@ -16,9 +16,7 @@ export default {
 </script>
 <script setup>
 import { ref, onMounted, nextTick } from 'vue'
-import vClickOutside from '@/directives/click-outside'
 import vScrollbarBar from './bar.vue'
-console.log(vClickOutside)
 const props = defineProps({})
 
 const wrapRef = ref(null)

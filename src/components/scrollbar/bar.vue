@@ -1,8 +1,8 @@
 <template>
   <div ref="barRef" :class="[
       'v-scrollbar-bar',
-  ]" @click="clickTrackHandler">
-    <div ref="thumbRef" class="v-scrollbar-thumb" :style="thumbStyle"></div>
+  ]">
+    <div ref="thumbRef" class="v-scrollbar-thumb" :style="thumbStyle" @click="clickThumbHandler"></div>
   </div>
 </template>
 
@@ -29,11 +29,7 @@ const thumbStyle = computed(() => ({
   height: props.size,
 }))
 
-const clickTrackHandler = e => {
-  // console.log(e.clientY)
-  // console.log(thumbRef.value.offsetHeight)
-  console.log(barRef.value['offsetHeight'] ** 2 / 3)
-}
+const clickThumbHandler = e => {}
 </script>
 
 <style scoped lang="scss">
@@ -44,7 +40,6 @@ const clickTrackHandler = e => {
   right: 2px;
   top: 2px;
   bottom: 2px;
-  top: 0;
   height: 100%;
   width: 6px;
   border-radius: 4px;
