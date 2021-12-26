@@ -10,6 +10,7 @@
       :value="modelValue"
       type="text"
       @input="onChange"
+      :placeholder="placeholder"
       :disabled="disabled"
       :readonly="readonly"
     />
@@ -30,6 +31,10 @@ const props = defineProps({
   modelValue: {
     type: String,
     default: '',
+  },
+  placeholder: {
+    type: String,
+    default: '请输入内容',
   },
   errorMessage: {
     type: String,

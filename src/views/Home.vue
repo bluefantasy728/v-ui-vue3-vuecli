@@ -2,8 +2,7 @@
   <div class="page">
     <div class="section section-select">
       <h4>Select</h4>
-      <v-select :options="selectOptions" v-model="selectResult"></v-select>
-      <!-- <v-select multiple :options="selectOptions" v-model="selectResultMulti"></v-select> -->
+      <v-select clearable :options="selectOptions" v-model="selectResult"></v-select>
     </div>
     <div class="section section-scrollbar">
       <h4>Scrollbar</h4>

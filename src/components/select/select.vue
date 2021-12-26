@@ -1,9 +1,16 @@
 <template>
-  <div class="v-select" ref="selectRef" @click="handleClick">
-    <v-input readonly clearable ref="inputRef" v-model="selectedLabel" @clear="clear">
+  <div
+    class="v-select"
+    ref="selectRef"
+    @click="handleClick"
+    @mouseenter="handleMouseEnter"
+    @mouseleave="handleMouseLeave"
+  >
+    <v-input readonly clearable ref="inputRef" v-model="selectedLabel" :placeholder="placeholder">
       <template #right-slot>
-        <!-- <v-icon _v-if="clearable" class="close-icon" name="close" @click.self="clear"></v-icon> -->
+        <v-icon v-if="isShowCloseIcon" class="close-icon" name="close" @click.stop="clear"></v-icon>
         <v-icon
+          v-else
           :class="[
           'caret-icon',
           {
@@ -29,7 +36,9 @@
             v-for="(item,index) in options"
             :key="index"
             @click="handleSelect(item)"
-          >{{item.label}}</li>
+          >
+            <span>{{item.label}}</span>
+          </li>
         </ul>
       </v-scrollbar>
     </v-popper>
@@ -51,13 +60,17 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-  multiple: {
-    type: Boolean,
-    default: false,
-  },
   options: {
     type: Array,
     default: () => [],
+  },
+  clearable: {
+    type: Boolean,
+    default: false,
+  },
+  placeholder: {
+    type: String,
+    default: '请选择',
   },
 })
 const emit = defineEmits(['update:modelValue'])
@@ -65,6 +78,7 @@ const selectRef = ref(null)
 const inputRef = ref(null)
 const popperRef = ref(null)
 const isOpen = ref(false)
+const isShowCloseIcon = ref(false)
 const setIsOpen = flag => {
   isOpen.value = flag
 }
@@ -77,20 +91,21 @@ const selectedLabel = computed(() => {
   return selected ? selected.label : ''
 })
 
-const handleClick = async () => {
-  // setTimeout(() => {
-  //   console.log(isOpen.value)
-  //   if (isOpen.value) {
-  //     close()
-  //   } else {
-  //     open()
-  //   }
-  // }, 0)
+const handleClick = () => {
   if (isOpen.value) {
     close()
   } else {
     open()
   }
+}
+
+const handleMouseEnter = e => {
+  if (props.clearable && props.modelValue) {
+    isShowCloseIcon.value = true
+  }
+}
+const handleMouseLeave = e => {
+  isShowCloseIcon.value = false
 }
 
 const close = () => {
@@ -106,7 +121,10 @@ const handleSelect = item => {
   setIsOpen(false)
 }
 
-const clear = () => {}
+const clear = () => {
+  emit('update:modelValue', '')
+  setIsOpen(false)
+}
 </script>
 
 <style scoped lang="scss">
@@ -125,6 +143,9 @@ const clear = () => {}
       &.is-up {
         transform: rotateZ(180deg);
       }
+    }
+    .close-icon {
+      font-size: 12px;
     }
   }
 }
