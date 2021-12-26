@@ -1,7 +1,15 @@
 const cbs = []
 const handleClick = e => {
   cbs.forEach(item => {
-    if (item.el === e.target || item.el.contains(e.target)) return
+    const fn = item.cb
+    const triggerRef = fn.triggerRef
+    const target = e.target
+    if (
+      item.el === target ||
+      item.el.contains(target) ||
+      triggerRef.value.$el.contains(target)
+    )
+      return
     item.cb()
   })
 }

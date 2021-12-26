@@ -3,6 +3,7 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
+  position: relative;
   .v-input-inner {
     height: $button-height;
     font-size: $font-size;
@@ -12,7 +13,7 @@
     background-color: $color-white;
     color: $color-text-primary;
     vertical-align: middle;
-    cursor: pointer;
+    // cursor: pointer;
     transition: 0.3s border-color;
     &:focus {
       outline: none;
@@ -27,7 +28,6 @@
     &:active {
       border-color: $color-primary;
     }
-
     .left-icon {
       margin-right: 0.5rem;
     }
@@ -48,5 +48,24 @@
         border-color: $color-text-placeholder;
       }
     }
+  }
+  .right-slot {
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    position: absolute;
+    width: 1em;
+    height: 100%;
+    line-height: 100%;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+  }
+  .close-icon {
+    font-size: 14px;
+    position: absolute;
+    top: 10px;
+    right: 0.4em;
+    cursor: pointer;
   }
 }

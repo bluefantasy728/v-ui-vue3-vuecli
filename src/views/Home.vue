@@ -2,7 +2,8 @@
   <div class="page">
     <div class="section section-select">
       <h4>Select</h4>
-      <v-select :options="selectOptions"></v-select>
+      <v-select :options="selectOptions" v-model="selectResult"></v-select>
+      <!-- <v-select multiple :options="selectOptions" v-model="selectResultMulti"></v-select> -->
     </div>
     <div class="section section-scrollbar">
       <h4>Scrollbar</h4>
@@ -14,7 +15,7 @@
     </div>
     <div class="section section-cascader">
       <h4>Cascader</h4>
-      <v-cascader v-model="cascaderResult" :options="cascaderOptions"></v-cascader>
+      <!-- <v-cascader v-model="cascaderResult" :options="cascaderOptions"></v-cascader> -->
     </div>
     <div class="section section-collapse">
       <h4>Collapse</h4>
@@ -143,7 +144,7 @@
       </v-row>
     </div>
     <div>
-      <v-icon name="settings"></v-icon>
+      <v-icon name="setting"></v-icon>
       <v-button>默认按钮</v-button>
       <v-button disabled>默认按钮（禁用）</v-button>
       <v-button type="primary">主要按钮</v-button>
@@ -155,29 +156,30 @@
       <v-button type="danger">主要按钮</v-button>
       <v-button disabled type="danger">主要按钮禁用</v-button>
     </div>
-    <v-button icon="settings">按钮</v-button>
-    <v-button icon="settings">
+    <v-button icon="setting">按钮</v-button>
+    <v-button icon="setting">
       <span>按钮</span>
     </v-button>
     <v-button loading>加载中</v-button>
-    <v-button icon="settings">
+    <v-button icon="setting">
       i am button
-      <v-icon name="settings"></v-icon>
+      <v-icon name="setting"></v-icon>
     </v-button>
 
     <div style="margin-top: 20px">
       <v-button-group>
-        <v-button icon="left">上一页</v-button>
+        <v-button icon="arrow-left">上一页</v-button>
         <v-button>刷新</v-button>
         <v-button>
           下一页
-          <v-icon class="right-icon" name="left"></v-icon>
+          <v-icon class="right-icon" name="arrow-right"></v-icon>
         </v-button>
       </v-button-group>
     </div>
     <hr />
     <v-input v-model="inputVal"></v-input>
     <v-input disabled v-model="inputVal"></v-input>
+    <v-input clearable v-model="inputVal"></v-input>
   </div>
 </template>
 
@@ -186,7 +188,7 @@
 import { reactive, toRefs, onMounted, computed, getCurrentInstance } from 'vue'
 import { useStore } from 'vuex'
 
-const _cascaderOptions = require('@/assets/cascaderOptions.js')
+import { _cascaderOptions, _selectOptions } from '@/assets/cascaderOptions.js'
 
 const store = useStore()
 const { proxy } = getCurrentInstance()
@@ -199,7 +201,9 @@ const state = reactive({
   collapseNameArr: ['1', '3'],
   cascaderResult: ['zujian', 'form', 'input'],
   cascaderOptions: _cascaderOptions,
-  selectOptions: _cascaderOptions,
+  selectOptions: _selectOptions,
+  selectResult: 'kekong',
+  selectResultMulti: ['kekong', 'checkbox', 'xiaolv'],
 })
 
 /***** 方法定义 *****/
@@ -219,6 +223,8 @@ const {
   cascaderResult,
   cascaderOptions,
   selectOptions,
+  selectResult,
+  selectResultMulti,
 } = toRefs(state)
 </script>
 <style lang="scss">

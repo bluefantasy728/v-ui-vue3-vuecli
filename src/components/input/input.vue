@@ -11,8 +11,13 @@
       type="text"
       @input="onChange"
       :disabled="disabled"
+      :readonly="readonly"
     />
     <div v-if="errorMessage" class="error-message"></div>
+    <div class="right-slot">
+      <slot name="right-slot"></slot>
+    </div>
+    <!-- <v-icon v-if="clearable" class="close-icon" name="close" @click.self="clear"></v-icon> -->
   </div>
 </template>
 <script>
@@ -34,11 +39,24 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  readonly: {
+    type: Boolean,
+    default: false,
+  },
+  clearable: {
+    type: Boolean,
+    default: false,
+  },
 })
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(['update:modelValue', 'clear'])
 
 function onChange(e) {
   emit('update:modelValue', e.target.value)
+}
+
+function clear() {
+  emit('update:modelValue', '')
+  emit('clear')
 }
 </script>
 

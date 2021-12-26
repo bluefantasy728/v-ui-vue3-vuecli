@@ -70,10 +70,10 @@ export default {
 @use 'cascader.scss';
 .v-cascader {
   position: relative;
-  height: 40px;
-  width: 150px;
+  // height: 40px;
+  // width: 150px;
   background: #eee;
-  display: flex-inline;
+  display: inline-block;
 }
 .v-cascader-wrapper {
   position: absolute;

@@ -18,7 +18,7 @@ export default function usePopper() {
   const setPopoverStyle = popperTrigger => {
     // const el = popoverRef.value
     const { left, top, width, height } = popperTrigger.getBoundingClientRect()
-    popperStyle.top = top + window.scrollY - 15 + 'px'
+    popperStyle.top = top + height + window.scrollY + 15 + 'px'
     popperStyle.left = left + window.scrollX + 'px'
 
     setArrowStyle(popperTrigger)

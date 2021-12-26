@@ -1,9 +1,15 @@
 <template>
   <teleport to="body">
-    <div v-show="isVisible" ref="popperRef" class="v-popper" :style="popperStyle">
+    <div
+      v-show="isOpen"
+      ref="popperRef"
+      class="v-popper"
+      :style="popperStyle"
+      v-click-outside="close"
+    >
       <slot></slot>
       <!-- <div class="test"></div> -->
-      <!-- <div class="popper-arrow" :style="popperArrowStyle"></div> -->
+      <div class="popper-arrow" :style="popperArrowStyle"></div>
     </div>
   </teleport>
 </template>
@@ -15,6 +21,7 @@ export default {
 <script setup>
 import { ref, onMounted, inject } from 'vue'
 import usePopper from '@/hooks/usePopper'
+import vClickOutside from '@/directives/click-outside'
 const { popperStyle, setPopoverStyle, popperArrowStyle } = usePopper()
 const props = defineProps({
   modelValue: {
@@ -30,12 +37,20 @@ const emit = defineEmits(['update:modelValue'])
 const popperRef = ref(null)
 const isVisible = ref(false)
 
-const wrapRef = inject('wrapRef')
+const triggerRef = inject('triggerRef')
+const isOpen = inject('isOpen')
+const setIsOpen = inject('setIsOpen')
 
-console.log(wrapRef)
+const open = () => {
+  setIsOpen(true)
+}
+const close = () => {
+  setIsOpen(false)
+}
+close.triggerRef = triggerRef
 
 onMounted(() => {
-  setPopoverStyle(wrapRef.value)
+  setPopoverStyle(triggerRef.value.$el)
 })
 </script>
 
