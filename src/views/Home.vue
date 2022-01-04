@@ -1,5 +1,11 @@
 <template>
   <div class="page">
+    <div class="section section-sticky">
+      <h4>Sticky</h4>
+      <v-sticky>
+        <h4 style="background:#eee;padding:20px;">I am a sticky component</h4>
+      </v-sticky>
+    </div>
     <div class="section section-select">
       <h4>Select</h4>
       <v-select clearable :options="selectOptions" v-model="selectResult"></v-select>
