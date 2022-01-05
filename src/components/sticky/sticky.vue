@@ -33,10 +33,8 @@ const wrapperStyle = reactive({
   height: '',
 })
 const innerStyle = reactive({
-  left: '',
   top: '',
   width: '',
-  height: '',
 })
 
 const distanceTop = computed(() => parseInt(props.distance))
@@ -60,7 +58,6 @@ function onScrollHandler() {
   const { top, left } = wrapperRef.value.getBoundingClientRect()
   position.top = top
   position.left = left + window.scrollX
-
   isSticky.value = top < distanceTop.value
 }
 

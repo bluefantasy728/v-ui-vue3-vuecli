@@ -15,7 +15,7 @@ export default {
 }
 </script>
 <script setup>
-import { ref, onMounted, nextTick } from 'vue'
+import { ref, onMounted, onUpdated, nextTick } from 'vue'
 import vScrollbarBar from './bar.vue'
 const props = defineProps({})
 
@@ -25,18 +25,30 @@ const moveY = ref(0)
 const GAP = 4 // scrollbar-bar上下各留了2px空隙
 const sizeHeight = ref('0')
 
-const update = () => {
+const update = async () => {
   if (!wrapRef.value) return
+  // if (wrapRef.value.scrollHeight === 0) return
+
   const offsetHeight = wrapRef.value.offsetHeight - GAP
+  // console.log(offsetHeight)
 
   const originalHeight = offsetHeight ** 2 / wrapRef.value.scrollHeight
   const height = Math.max(originalHeight, 20)
+  // console.log(wrapRef.value.scrollHeight)
+
   ratioY.value =
     originalHeight /
     (offsetHeight - originalHeight) /
     (height / (offsetHeight - height))
 
+  // console.log(wrapRef.value)
+  // console.log(originalHeight)
+  // console.log(offsetHeight - originalHeight)
+  // console.log(height / (offsetHeight - height))
+
   sizeHeight.value = height + GAP < offsetHeight ? `${height}px` : ''
+
+  // console.log(sizeHeight.value)
 }
 
 const handleScroll = () => {
@@ -44,6 +56,8 @@ const handleScroll = () => {
     const offsetHeight = wrapRef.value.offsetHeight - GAP
     moveY.value =
       ((wrapRef.value.scrollTop * 100) / offsetHeight) * ratioY.value
+    console.log(offsetHeight)
+    console.log(ratioY.value)
   }
 }
 
@@ -55,6 +69,7 @@ onMounted(() => {
 <style scoped lang="scss">
 @use './scrollbar.scss';
 .v-scrollbar {
+  display: inline-block;
   overflow: hidden;
   position: relative;
   height: 100%;

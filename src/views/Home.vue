@@ -17,11 +17,11 @@
     </div>
     <div class="section section-scrollbar">
       <h4>Scrollbar</h4>
-      <v-scrollbar>
+      <!-- <v-scrollbar>
         <ul style="width:200px;margin:0;padding:0;">
           <li v-for="i in 20" :key="i" style="height:30px">选项{{i}}</li>
         </ul>
-      </v-scrollbar>
+      </v-scrollbar>-->
     </div>
     <div class="section section-cascader">
       <h4>Cascader</h4>
