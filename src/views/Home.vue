@@ -1,14 +1,19 @@
 <template>
   <div class="page">
-    <div class="section section-sticky">
-      <h4>Sticky</h4>
-      <v-sticky>
-        <h4 style="background:#eee;padding:20px;">I am a sticky component</h4>
-      </v-sticky>
-    </div>
     <div class="section section-select">
       <h4>Select</h4>
       <v-select clearable :options="selectOptions" v-model="selectResult"></v-select>
+    </div>
+    <div class="section section-sticky">
+      <h4>Sticky</h4>
+      <v-sticky style="margin-bottom:20px">
+        <h4 style="background:#eee;padding:20px;width:300px;">I am a sticky component</h4>
+      </v-sticky>
+      <v-sticky distance="90px">
+        <h4
+          style="background:#eee;padding:20px;_width:300px"
+        >I am a sticky component distance="90px"</h4>
+      </v-sticky>
     </div>
     <div class="section section-scrollbar">
       <h4>Scrollbar</h4>
