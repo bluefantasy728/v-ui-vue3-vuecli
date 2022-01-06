@@ -1,16 +1,17 @@
 <template>
   <teleport to="body">
-    <div
-      v-show="isOpen"
-      ref="popperRef"
-      class="v-popper"
-      :style="popperStyle"
-      v-click-outside="close"
-    >
-      <slot></slot>
-      <!-- <div class="test"></div> -->
-      <div class="popper-arrow" :style="popperArrowStyle"></div>
-    </div>
+    <transition name="slidedown">
+      <div
+        v-show="isOpen"
+        ref="popperRef"
+        class="v-popper"
+        :style="popperStyle"
+        v-click-outside="close"
+      >
+        <slot></slot>
+        <div class="popper-arrow" :style="popperArrowStyle"></div>
+      </div>
+    </transition>
   </teleport>
 </template>
 <script>
@@ -19,10 +20,13 @@ export default {
 }
 </script>
 <script setup>
-import { ref, onMounted, inject } from 'vue'
+import { ref, onMounted, inject, provide, watch } from 'vue'
+import mitt from 'mitt'
 import usePopper from '@/hooks/usePopper'
 import vClickOutside from '@/directives/click-outside'
 const { popperStyle, setPopoverStyle, popperArrowStyle } = usePopper()
+const emitter = mitt()
+provide('emitter', emitter)
 const props = defineProps({
   modelValue: {
     type: String,
@@ -35,30 +39,40 @@ const props = defineProps({
 })
 const emit = defineEmits(['update:modelValue'])
 const popperRef = ref(null)
-const isVisible = ref(false)
 
 const triggerRef = inject('triggerRef')
 const isOpen = inject('isOpen')
 const setIsOpen = inject('setIsOpen')
 
-const open = () => {
-  setIsOpen(true)
-}
 const close = () => {
   setIsOpen(false)
 }
+// 给这个方法绑定上触发元素，方便在click-outside指令里拿到并使用
 close.triggerRef = triggerRef
 
 onMounted(() => {
   setPopoverStyle(triggerRef.value.$el)
 })
+
+watch(isOpen, val => {
+  if (val) {
+    emitter.emit('showScrollbar')
+  }
+})
 </script>
 
 <style scoped lang="scss">
 @use 'popper.scss';
-.test {
-  width: 200px;
-  height: 200px;
-  background: pink;
+.slidedown-enter-active,
+.slidedown-leave-active {
+  transition: 0.3s opacity;
+}
+.slidedown-enter-from,
+.slidedown-leave-to {
+  opacity: 0;
+}
+.slidedown-enter-to,
+.slidedown-leave-from {
+  opacity: 1;
 }
 </style>

@@ -13,7 +13,6 @@
     background-color: $color-white;
     color: $color-text-primary;
     vertical-align: middle;
-    // cursor: pointer;
     transition: 0.3s border-color;
     &:focus {
       outline: none;
@@ -58,7 +57,7 @@
     height: 100%;
     line-height: 100%;
     top: 0;
-    right: 0;
+    right: 2px;
     cursor: pointer;
   }
   .close-icon {

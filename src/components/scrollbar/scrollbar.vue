@@ -1,12 +1,14 @@
 <template>
-  <div :class="[
+  <transition name="slidedown">
+    <div :class="[
       'v-scrollbar',
     ]">
-    <div ref="wrapRef" class="v-scrollbar-wrap" @scroll="handleScroll">
-      <slot></slot>
+      <div ref="wrapRef" class="v-scrollbar-wrap" @scroll="handleScroll">
+        <slot></slot>
+      </div>
+      <v-scrollbar-bar :move="moveY" :ratio="ratioY" :size="sizeHeight"></v-scrollbar-bar>
     </div>
-    <v-scrollbar-bar :move="moveY" :ratio="ratioY" :size="sizeHeight"></v-scrollbar-bar>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -15,9 +17,11 @@ export default {
 }
 </script>
 <script setup>
-import { ref, onMounted, onUpdated, nextTick } from 'vue'
+import { ref, onMounted, onUpdated, nextTick, inject } from 'vue'
+import mitt from 'mitt'
 import vScrollbarBar from './bar.vue'
 const props = defineProps({})
+const emitter = inject('emitter')
 
 const wrapRef = ref(null)
 const ratioY = ref(1)
@@ -27,28 +31,18 @@ const sizeHeight = ref('0')
 
 const update = async () => {
   if (!wrapRef.value) return
-  // if (wrapRef.value.scrollHeight === 0) return
 
   const offsetHeight = wrapRef.value.offsetHeight - GAP
-  // console.log(offsetHeight)
 
   const originalHeight = offsetHeight ** 2 / wrapRef.value.scrollHeight
   const height = Math.max(originalHeight, 20)
-  // console.log(wrapRef.value.scrollHeight)
 
   ratioY.value =
     originalHeight /
     (offsetHeight - originalHeight) /
     (height / (offsetHeight - height))
 
-  // console.log(wrapRef.value)
-  // console.log(originalHeight)
-  // console.log(offsetHeight - originalHeight)
-  // console.log(height / (offsetHeight - height))
-
   sizeHeight.value = height + GAP < offsetHeight ? `${height}px` : ''
-
-  // console.log(sizeHeight.value)
 }
 
 const handleScroll = () => {
@@ -62,6 +56,10 @@ const handleScroll = () => {
 }
 
 onMounted(() => {
+  nextTick(() => update())
+})
+
+emitter.on('showScrollbar', () => {
   nextTick(() => update())
 })
 </script>
@@ -87,4 +85,12 @@ onMounted(() => {
     display: none;
   }
 }
+// .slidedown-enter-active,
+// .slidedown-leave-active {
+//   transition: 0.3s opacity;
+// }
+// .slidedown-enter-from,
+// .slidedown-leave-to {
+//   opacity: 0;
+// }
 </style>
