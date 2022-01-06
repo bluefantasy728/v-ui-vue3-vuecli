@@ -52,6 +52,21 @@ emit('update:selected', name)
   最常用的做法，是将这个容器定义为 position:absolute，然后插入到 body 中。那关键的知识点为：获取触发节点的距离页面顶部的距离和页面左边的距离，注意因为页面本身是超过整个屏幕高度的，所以除了那个`getBoundingClientRect`的 top 之外，还要加上`window.scrollY`，这个 scrollY 就是目前窗口往上滚动超过屏幕的距离，scrollX 同理。至于如何插入到
 - 如何插入这个元素？其实 vue3 支持 teleport 标签，可以轻松实现在 body 上插入
 - 如何保证在点击这个元素外面的地方可以让它消失，但是点击在这个元素的内部不能让它消失？这里可以使用 directive 的功能，自定义指令的一个重要的功能，就是可以在只写标签的情况下，对这个标签进行一些在不同生命周期中做一些 DOM 操作，在 popper 组件中用到了 click-out 这个指令
+- 通过 transition 给 popper 显示的时候加入渐入渐出动画
+
+---
+
+## ScrollBar
+
+在 select 组件里的下拉框使用了 Popper，里面嵌套了 scrollbar 组件。
+
+- 难点在于里面的 bar 组件，首先要通过 css 隐藏原生的滚动条，再创建自定义的滚动条组件，这个滚动条组件没有实现点击移动功能，只能随着鼠标滚动而滚动，里面包括了滚动条的位置定位还有高度设置。
+- 在与 popper 组件配合的时候，需要 popper 组件 provide 一个 mitt 对象，通知 scrollbar 要显示了，然后计算 scrollbar 的高度再赋值滚动条的高度。
+- 但是 scrollbar 未必上层都会套在 popper 组件里，所以 inject 这个 mitt 对象的时候要加入一个默认值，否则 vue 会抛警告
+
+```
+const emitter = inject('emitter', null)
+```
 
 ---
 

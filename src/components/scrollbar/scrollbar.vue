@@ -15,11 +15,11 @@ export default {
 }
 </script>
 <script setup>
-import { ref, onMounted, onUpdated, nextTick, inject } from 'vue'
+import { ref, onMounted, nextTick, inject } from 'vue'
 import mitt from 'mitt'
 import vScrollbarBar from './bar.vue'
 const props = defineProps({})
-const emitter = inject('emitter')
+const emitter = inject('emitter', null)
 
 const wrapRef = ref(null)
 const ratioY = ref(1)
@@ -55,9 +55,11 @@ onMounted(() => {
   nextTick(() => update())
 })
 
-emitter.on('showScrollbar', () => {
-  nextTick(() => update())
-})
+if (emitter) {
+  emitter.on('showScrollbar', () => {
+    nextTick(() => update())
+  })
+}
 </script>
 
 <style scoped lang="scss">

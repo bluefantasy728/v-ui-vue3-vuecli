@@ -1,6 +1,10 @@
 <template>
   <div class="page">
     <div class="section section-select">
+      <h4>Upload</h4>
+      <v-upload action="http://127.0.0.1:3003/upload" accept="image/*"></v-upload>
+    </div>
+    <div class="section section-select">
       <h4>Select</h4>
       <v-select clearable :options="selectOptions" v-model="selectResult"></v-select>
     </div>
@@ -10,18 +14,16 @@
         <h4 style="background:#eee;padding:20px;width:300px;">I am a sticky component</h4>
       </v-sticky>
       <v-sticky distance="90px">
-        <h4
-          style="background:#eee;padding:20px;_width:300px"
-        >I am a sticky component distance="90px"</h4>
+        <h4 style="background:#eee;padding:20px;">I am a sticky component distance="90px"</h4>
       </v-sticky>
     </div>
     <div class="section section-scrollbar">
       <h4>Scrollbar</h4>
-      <!-- <v-scrollbar>
+      <v-scrollbar>
         <ul style="width:200px;margin:0;padding:0;">
           <li v-for="i in 20" :key="i" style="height:30px">选项{{i}}</li>
         </ul>
-      </v-scrollbar>-->
+      </v-scrollbar>
     </div>
     <div class="section section-cascader">
       <h4>Cascader</h4>

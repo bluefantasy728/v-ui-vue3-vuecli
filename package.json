@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
-    "upload:server": "node server/app.js"
+    "upload:server": "nodemon server/app.js"
   },
   "dependencies": {
     "core-js": "^3.6.5",
