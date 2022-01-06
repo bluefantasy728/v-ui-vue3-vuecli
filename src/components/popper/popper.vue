@@ -63,16 +63,18 @@ watch(isOpen, val => {
 
 <style scoped lang="scss">
 @use 'popper.scss';
-.slidedown-enter-active,
+.slidedown-enter-active {
+  animation: slide-down 0.3s;
+}
 .slidedown-leave-active {
-  transition: 0.3s opacity;
+  animation: slide-down 0.3s reverse;
 }
-.slidedown-enter-from,
-.slidedown-leave-to {
-  opacity: 0;
-}
-.slidedown-enter-to,
-.slidedown-leave-from {
-  opacity: 1;
+@keyframes slide-down {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 </style>

@@ -1,14 +1,12 @@
 <template>
-  <transition name="slidedown">
-    <div :class="[
+  <div :class="[
       'v-scrollbar',
     ]">
-      <div ref="wrapRef" class="v-scrollbar-wrap" @scroll="handleScroll">
-        <slot></slot>
-      </div>
-      <v-scrollbar-bar :move="moveY" :ratio="ratioY" :size="sizeHeight"></v-scrollbar-bar>
+    <div ref="wrapRef" class="v-scrollbar-wrap" @scroll="handleScroll">
+      <slot></slot>
     </div>
-  </transition>
+    <v-scrollbar-bar :move="moveY" :ratio="ratioY" :size="sizeHeight"></v-scrollbar-bar>
+  </div>
 </template>
 
 <script>
@@ -50,8 +48,6 @@ const handleScroll = () => {
     const offsetHeight = wrapRef.value.offsetHeight - GAP
     moveY.value =
       ((wrapRef.value.scrollTop * 100) / offsetHeight) * ratioY.value
-    console.log(offsetHeight)
-    console.log(ratioY.value)
   }
 }
 
@@ -85,12 +81,4 @@ emitter.on('showScrollbar', () => {
     display: none;
   }
 }
-// .slidedown-enter-active,
-// .slidedown-leave-active {
-//   transition: 0.3s opacity;
-// }
-// .slidedown-enter-from,
-// .slidedown-leave-to {
-//   opacity: 0;
-// }
 </style>
