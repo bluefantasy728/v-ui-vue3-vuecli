@@ -1,5 +1,6 @@
 const path = require('path')
 const express = require('express')
+const cors = require('cors')
 const multer = require('multer')
 
 const storage = multer.diskStorage({
@@ -17,11 +18,11 @@ const storage = multer.diskStorage({
 const upload = multer({ storage })
 
 const app = express()
+app.use(cors())
 app.use(express.static(path.join(__dirname, 'upload')))
 
 app.post('/upload', upload.single('file'), (req, res) => {
   console.log(req.file)
-  res.setHeader('Access-Control-Allow-Origin', '*')
   res.send({
     filename: req.file.filename,
     size: req.file.size,
