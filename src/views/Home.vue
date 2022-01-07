@@ -2,7 +2,7 @@
   <div class="page">
     <div class="section section-select">
       <h4>Upload</h4>
-      <v-upload action="http://127.0.0.1:3003/upload" accept="image/*"></v-upload>
+      <v-upload v-model:fileList="imgList" action="http://127.0.0.1:3003/upload" accept="image/*"></v-upload>
     </div>
     <div class="section section-select">
       <h4>Select</h4>
@@ -216,6 +216,7 @@ const state = reactive({
   selectOptions: _selectOptions,
   selectResult: 'kekong',
   selectResultMulti: ['kekong', 'checkbox', 'xiaolv'],
+  imgList: [],
 })
 
 /***** 方法定义 *****/
@@ -237,6 +238,7 @@ const {
   selectOptions,
   selectResult,
   selectResultMulti,
+  imgList,
 } = toRefs(state)
 </script>
 <style lang="scss">
