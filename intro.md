@@ -76,3 +76,12 @@ const emitter = inject('emitter', null)
 有几点注意
 
 - slot 外层还要再加一层元素，然后监听到一旦需要变成 stikcy 状态，需要给这个元素加上 fixed，然后给最外层元素加上 width,height 的样式，目的是为了占位，因为一旦给组件外层元素变成 fixed 之后就脱离了文档流，下面的元素会突然网上顶。为了避免这个情况，就需要在变化状态的时候给外层手动加入包裹元素的样式
+
+---
+
+## Upload 上传
+
+- 使用 XMLHttpRequest 实例以及 FormData 实现上传
+- 创建一个 type=file 的 input，然后模拟点击这个 input 选择文件
+- 然后给这个 input 绑定上 change 事件实现上传操作
+- 拖拽上传，只要给容器添加 drop,dragover,dragleave 事件就行，3 个事件都通过.prevent 来阻止默认事件，然后把主要逻辑写在 drop 里，通过事件对象获取到鼠标放开时拖进去的文件对象`const file = e.dataTransfer.files[0]`。
