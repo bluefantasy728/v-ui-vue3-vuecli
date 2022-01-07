@@ -48,5 +48,5 @@ const { shuttleStyle } = toRefs(state)
 </script>
 
 <style scoped lang="scss">
-@use './tabs-nav.scss';
+@import './tabs-nav.scss';
 </style>

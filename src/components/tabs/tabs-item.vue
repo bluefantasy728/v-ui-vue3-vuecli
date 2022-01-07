@@ -50,5 +50,5 @@ onMounted(() => {
 </script>
 
 <style scoped lang="scss">
-@use './tabs-item.scss';
+@import './tabs-item.scss';
 </style>

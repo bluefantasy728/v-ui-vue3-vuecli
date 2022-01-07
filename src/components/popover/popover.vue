@@ -89,5 +89,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@use 'popover.scss';
+@import 'popover.scss';
 </style>

@@ -17,5 +17,5 @@ const props = defineProps({})
 </script>
 
 <style scoped lang="scss">
-@use './tabs-content.scss';
+@import './tabs-content.scss';
 </style>

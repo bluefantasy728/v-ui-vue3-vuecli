@@ -63,7 +63,7 @@ if (emitter) {
 </script>
 
 <style scoped lang="scss">
-@use './scrollbar.scss';
+@import './scrollbar.scss';
 .v-scrollbar {
   display: inline-block;
   overflow: hidden;

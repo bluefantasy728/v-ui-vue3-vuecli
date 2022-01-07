@@ -30,5 +30,5 @@ const props = defineProps({
 </script>
 
 <style scoped lang="scss">
-@use './tabs-panel.scss';
+@import './tabs-panel.scss';
 </style>

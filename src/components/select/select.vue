@@ -128,8 +128,7 @@ const clear = () => {
 </script>
 
 <style scoped lang="scss">
-@use 'select.scss';
-@import '../../style/index.scss';
+@import 'select.scss';
 .v-select {
   display: inline-block;
   position: relative;

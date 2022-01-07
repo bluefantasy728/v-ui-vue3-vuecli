@@ -58,8 +58,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@use 'cascader-item.scss';
-@import '../../style/index.scss';
+@import 'cascader-item.scss';
 .v-cascader-item {
   height: 200px;
   border: 1px solid #ddd;

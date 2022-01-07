@@ -41,7 +41,7 @@ provide('changeName', changeName)
 </script>
 
 <style scoped lang="scss">
-@use './tabs.scss';
+@import './tabs.scss';
 // .v-tabs {
 // }
 </style>

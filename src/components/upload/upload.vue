@@ -1,12 +1,19 @@
 <template>
   <div class="v-upload">
-    <input ref="inputRef" type="file" name="file" :accept="accept" @change="onChange" />
+    <input
+      class="v-upload-input"
+      ref="inputRef"
+      type="file"
+      name="file"
+      :accept="accept"
+      @change="onChange"
+    />
     <v-button type="primary" @click="submit">提交</v-button>
     <ul class="img-list">
       <li class="img-list-item" v-for="(item) in imgList" :key="item.filename">
         <img class="img-item" :src="`http://127.0.0.1:3003/${item.filename}`" alt />
       </li>
-      <div class="add-btn"></div>
+      <div class="add-btn">12</div>
     </ul>
   </div>
 </template>
@@ -41,18 +48,6 @@ function submit() {
       imgList.value.push(JSON.parse(xhr.responseText))
     }
   }
-
-  // xhr.upload.addEventListener(
-  //   'progress',
-  //   function (event) {
-  //     if (event.lengthComputable) {
-  //       // progress.style.width =
-  //       //   Math.ceil((event.loaded * 100) / event.total) + '%'
-  //       console.log(Math.ceil((event.loaded * 100) / event.total) + '%')
-  //     }
-  //   },
-  //   false
-  // )
 }
 
 function onChange(e) {
@@ -61,7 +56,9 @@ function onChange(e) {
 </script>
 
 <style scoped lang="scss">
-@use './upload.scss';
+.v-upload-input {
+  display: none;
+}
 .box {
   background-color: #fbfdff;
   box-sizing: border-box;
@@ -83,6 +80,8 @@ function onChange(e) {
     height: 100%;
   }
   .add-btn {
+    @extend .box;
+    @extend .flex-center;
     border: 1px dashed #c0ccda;
   }
 }

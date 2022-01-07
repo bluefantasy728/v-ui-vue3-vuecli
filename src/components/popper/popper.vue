@@ -62,7 +62,7 @@ watch(isOpen, val => {
 </script>
 
 <style scoped lang="scss">
-@use 'popper.scss';
+@import 'popper.scss';
 .slidedown-enter-active {
   animation: slide-down 0.3s;
 }

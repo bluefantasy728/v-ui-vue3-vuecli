@@ -35,9 +35,8 @@ provide('isSingle', isSingle)
 </script>
 
 <style scoped lang="scss">
-@use 'collapse.scss';
-@import '../../style/index.scss';
-.v-collapse{
+@import 'collapse.scss';
+.v-collapse {
   border-top: 1px solid $color-text-placeholder;
   border-bottom: 1px solid $color-text-placeholder;
 }

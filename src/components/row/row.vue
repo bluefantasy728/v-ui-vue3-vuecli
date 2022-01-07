@@ -40,5 +40,5 @@ provide('gutter', props.gutter)
 </script>
 
 <style scoped lang="scss">
-@use './row.scss';
+@import './row.scss';
 </style>

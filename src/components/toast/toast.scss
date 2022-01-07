@@ -1,4 +1,3 @@
-@import '../../style/index.scss';
 .v-toast {
   position: fixed;
   min-height: 40px;
@@ -11,19 +10,19 @@
   color: #fff;
   &.v-toast-success {
     background: $color-success;
-    border: 1px solid darken($color-success,3);
+    border: 1px solid darken($color-success, 3);
   }
   &.v-toast-info {
     background: $color-text-placeholder;
-    border: 1px solid darken($color-text-placeholder,3);
+    border: 1px solid darken($color-text-placeholder, 3);
   }
   &.v-toast-warning {
     background: $color-warning;
-    border: 1px solid darken($color-warning,3);
+    border: 1px solid darken($color-warning, 3);
   }
   &.v-toast-error {
     background: $color-danger;
-    border: 1px solid darken($color-danger,3);
+    border: 1px solid darken($color-danger, 3);
   }
   &.v-toast-top {
     top: 10px;

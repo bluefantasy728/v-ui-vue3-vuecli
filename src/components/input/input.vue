@@ -66,5 +66,5 @@ function clear() {
 </script>
 
 <style scoped lang="scss">
-@use 'input.scss';
+@import 'input.scss';
 </style>

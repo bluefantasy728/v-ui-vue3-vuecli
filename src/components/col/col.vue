@@ -48,5 +48,5 @@ const colClass = computed(() => {
 </script>
 
 <style scoped lang="scss">
-@use './col.scss';
+@import './col.scss';
 </style>

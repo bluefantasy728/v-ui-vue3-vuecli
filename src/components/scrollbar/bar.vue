@@ -33,8 +33,7 @@ const clickThumbHandler = e => {}
 </script>
 
 <style scoped lang="scss">
-@use './bar.scss';
-@import '../../style/index.scss';
+@import './bar.scss';
 .v-scrollbar-bar {
   position: absolute;
   right: 2px;

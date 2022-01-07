@@ -54,5 +54,5 @@ onMounted(() => {
 </script>
 
 <style scoped lang="scss">
-@use './toast.scss';
+@import './toast.scss';
 </style>

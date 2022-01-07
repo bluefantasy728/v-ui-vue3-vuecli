@@ -99,8 +99,7 @@ onMounted(() => {
 </script>
 
 <style scoped lang="scss">
-@use 'collapse-item.scss';
-@import '../../style/index.scss';
+@import 'collapse-item.scss';
 .v-collapse-item {
   .v-collapse-title {
     padding: 10px;

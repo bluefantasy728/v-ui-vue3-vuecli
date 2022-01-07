@@ -67,7 +67,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@use 'cascader.scss';
+@import 'cascader.scss';
 .v-cascader {
   position: relative;
   // height: 40px;

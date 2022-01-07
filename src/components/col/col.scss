@@ -1,5 +1,4 @@
 @use 'sass:math';
-@import '../../style/index.scss';
 .v-col {
   @for $i from 1 through 24 {
     &.v-col-#{$i} {
