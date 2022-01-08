@@ -84,7 +84,7 @@ const open = () => {
 watch(
   () => isOpen.value,
   (val, oldVal) => {
-    console.log(val)
+    // console.log(val)
     val ? open() : close()
   }
 )

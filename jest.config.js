@@ -10,9 +10,9 @@ module.exports = {
     '^@/(.*)$': '<rootDir>/src/$1',
   },
   testMatch: [
-    // "**/__test__/**/*.[jt]s?(x)",
+    // '**/__test__/**/*.[jt]s?(x)',
     // "**/?(*.)+(spec|test).[jt]s?(x)"
-    '**/collapse/__test__/?(*.)+(spec|test).[jt]s?(x)',
+    '**/upload/__test__/?(*.)+(spec|test).[jt]s?(x)',
   ],
   roots: ['<rootDir>'],
 }

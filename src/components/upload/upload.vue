@@ -45,6 +45,7 @@ export default {
 </script>
 <script setup>
 import { ref } from 'vue'
+import vIcon from '@/components/icon/icon.vue'
 import useDrag from './useDrag'
 import cloneDeep from 'lodash.clonedeep'
 const { isDragover, onDrop, onDragover, onDragLeave } = useDrag(upload)
