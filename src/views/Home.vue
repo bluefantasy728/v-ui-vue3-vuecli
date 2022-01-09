@@ -1,5 +1,9 @@
 <template>
   <div class="page">
+    <div class="section section-pager">
+      <h4>Pager</h4>
+      <v-pager :total="90"></v-pager>
+    </div>
     <div class="section section-select">
       <h4>Upload</h4>
       <v-upload v-model:fileList="imgList1" action="http://127.0.0.1:3003/upload" accept="image/*"></v-upload>
