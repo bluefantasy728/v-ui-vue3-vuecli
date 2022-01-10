@@ -1,69 +1,39 @@
-.v-input {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  .v-input-inner {
-    height: $button-height;
-    font-size: $font-size;
-    padding: 0 1em;
-    border-radius: $button-radius;
-    border: 1px solid $border-color-base;
-    background-color: $color-white;
-    color: $color-text-primary;
-    vertical-align: middle;
-    transition: 0.3s border-color;
-    &:focus {
-      outline: none;
-      border-color: $color-primary;
-      &:hover {
-        border-color: $color-primary;
+.v-pager {
+  display: inline-block;
+  white-space: nowrap;
+  vertical-align: top;
+  user-select: none;
+  .v-pager-list {
+    display: inline-block;
+    white-space: nowrap;
+    vertical-align: top;
+    user-select: none;
+    li {
+      display: inline-block;
+      margin: 0 5px;
+      background-color: #f4f4f5;
+      color: #606266;
+      min-width: 30px;
+      border-radius: 2px;
+      padding: 0 4px;
+      font-size: 13px;
+      height: 28px;
+      line-height: 28px;
+      box-sizing: border-box;
+      text-align: center;
+      cursor: pointer;
+      user-select: none;
+      &.is-active {
+        color: #fff;
+        font-weight: bold;
+        background: $color-primary;
+      }
+      &.is-disabled {
+        cursor: not-allowed;
+        .v-icon {
+          fill: $color-text-placeholder;
+        }
       }
     }
-    &:hover {
-      border-color: $color-text-secondary;
-    }
-    &:active {
-      border-color: $color-primary;
-    }
-    .left-icon {
-      margin-right: 0.5rem;
-    }
-    .right-icon {
-      margin-left: 0.5rem;
-    }
-    .loading-icon {
-      animation: spin 1s infinite linear;
-    }
-  }
-  &.is-disabled {
-    .v-input-inner {
-      color: $color-text-placeholder;
-      background-color: $border-color-base;
-      cursor: not-allowed;
-      border-color: $color-text-placeholder;
-      &:hover {
-        border-color: $color-text-placeholder;
-      }
-    }
-  }
-  .right-slot {
-    display: flex;
-    align-items: center;
-    justify-self: center;
-    position: absolute;
-    width: 1em;
-    height: 100%;
-    line-height: 100%;
-    top: 0;
-    right: 2px;
-    cursor: pointer;
-  }
-  .close-icon {
-    font-size: 14px;
-    position: absolute;
-    top: 10px;
-    right: 0.4em;
-    cursor: pointer;
   }
 }

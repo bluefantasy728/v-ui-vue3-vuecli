@@ -1,25 +1,43 @@
 <template>
   <div class="v-pager" :total="100">
     <ul class="v-pager-list">
-      <li class="arrow arrow-prev" @click="onClickPrev">
+      <li
+        :class="[
+        'arrow arrow-prev',
+        {
+          'is-disabled':current===1
+        }
+      ]"
+        @click="onClickPrev"
+      >
         <v-icon name="arrow-left"></v-icon>
       </li>
       <li
         :class="[
           'number',
           {
-            'is-active':current===i
+            'is-active':current===item
           }
         ]"
-        v-for="i in count"
-        :key="i"
-        @click="setCurrent(i)"
-      >{{i}}</li>
-      <li class="arrow arrow-next" @click="onClickNext">
+        v-for="(item,index) in list"
+        :key="index"
+        @click="onClickBtn(item,index)"
+      >
+        <span v-if="item.isDot">...</span>
+        <span v-else>{{item}}</span>
+      </li>
+      <li
+        :class="[
+        'arrow arrow-next',
+        {
+          'is-disabled':current===count
+        }
+      ]"
+        @click="onClickNext"
+      >
         <v-icon name="arrow-right"></v-icon>
       </li>
     </ul>
-    <!-- <v-button>></v-button> -->
   </div>
 </template>
 <script>
@@ -41,9 +59,68 @@ const size = ref(10) // 每页的数量
 const current = ref(1) // 当前页
 
 const count = computed(() => Math.ceil(props.total / size.value)) // 页面数量
+// 何时显示页码数字，何时显示省略号？页面1，最后一页，当前页，当前页+-1，当前页+-2，这7个是一直显示页码的，前后页码差距超过1的就显示省略号
+const list = computed(() => {
+  const cur = current.value
+  // const count = count.value
+  let arr = []
+  if (count.value < 8) {
+    for (let i = 1; i <= count.value; i++) {
+      arr.push(i)
+    }
+  } else {
+    if (cur < 6) {
+      arr = [1, 2, 3, 4, 5, '...', count.value]
+    } else if (cur > count.value - 5) {
+      arr = [
+        1,
+        '...',
+        count.value - 4,
+        count.value - 3,
+        count.value - 2,
+        count.value - 1,
+        count.value,
+      ]
+    } else {
+      // 所有显示数字的
+      let digitalList = [
+        1,
+        cur,
+        cur - 2,
+        cur - 1,
+        cur + 1,
+        cur + 2,
+        count.value,
+      ]
+      // 去重，排序再过滤到小于1的和大于count的
+      digitalList = Array.from(new Set(digitalList))
+        .sort((a, b) => a - b)
+        .filter(item => item > 0 && item <= count.value)
 
-function setCurrent(i) {
-  current.value = i
+      arr = digitalList.reduce((acc, cur, index) => {
+        acc.push(cur)
+        if (digitalList[index + 1] - digitalList[index] > 1) {
+          acc.push('...')
+        }
+        return acc
+      }, [])
+    }
+  }
+  return arr
+})
+function onClickBtn(item, index) {
+  if (item === '...') {
+    if (index === 1) {
+      setCurrent(current.value - 5)
+    } else {
+      setCurrent(current.value + 5)
+    }
+  } else {
+    setCurrent(item)
+  }
+}
+function setCurrent(item) {
+  current.value = item
 }
 function onClickPrev() {
   if (current.value > 1) {
@@ -59,37 +136,4 @@ function onClickNext() {
 
 <style scoped lang="scss">
 @import 'pager.scss';
-.v-pager {
-  display: inline-block;
-  white-space: nowrap;
-  vertical-align: top;
-  user-select: none;
-  .v-pager-list {
-    display: inline-block;
-    white-space: nowrap;
-    vertical-align: top;
-    user-select: none;
-    li {
-      display: inline-block;
-      margin: 0 5px;
-      background-color: #f4f4f5;
-      color: #606266;
-      min-width: 30px;
-      border-radius: 2px;
-      padding: 0 4px;
-      font-size: 13px;
-      height: 28px;
-      line-height: 28px;
-      box-sizing: border-box;
-      text-align: center;
-      cursor: pointer;
-      user-select: none;
-      &.is-active {
-        color: #fff;
-        font-weight: bold;
-        background: $color-primary;
-      }
-    }
-  }
-}
 </style>

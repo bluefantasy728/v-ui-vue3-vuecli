@@ -6,17 +6,19 @@
 
 <script>
 export default {
-  name: "v-icon",
+  name: 'v-icon',
   props: {
     name: {
       type: String,
     },
   },
-};
+}
 </script>
 
 <style scoped lang="scss">
 .v-icon {
+  display: inline-block;
+  vertical-align: middle;
   width: 1em;
   height: 1em;
 }
