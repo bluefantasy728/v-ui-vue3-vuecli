@@ -85,3 +85,11 @@ const emitter = inject('emitter', null)
 - 创建一个 type=file 的 input，然后模拟点击这个 input 选择文件
 - 然后给这个 input 绑定上 change 事件实现上传操作
 - 拖拽上传，只要给容器添加 drop,dragover,dragleave 事件就行，3 个事件都通过.prevent 来阻止默认事件，然后把主要逻辑写在 drop 里，通过事件对象获取到鼠标放开时拖进去的文件对象`const file = e.dataTransfer.files[0]`。
+
+---
+
+## Pager 分页
+
+- 关键问题是对当前页码 current 的控制
+- 当总页数少于 8 时，展示完整的分页器；如果大于等于 8，根据不同 current，要展示不同的页码以及省略号
+- 点击省略号也可以让 current 往前或者往后跳 5 格

@@ -1,0 +1,39 @@
+.v-pager {
+  display: inline-block;
+  white-space: nowrap;
+  vertical-align: top;
+  user-select: none;
+  .v-pager-list {
+    display: inline-block;
+    white-space: nowrap;
+    vertical-align: top;
+    user-select: none;
+    li {
+      display: inline-block;
+      margin: 0 5px;
+      background-color: #f4f4f5;
+      color: #606266;
+      min-width: 30px;
+      border-radius: 2px;
+      padding: 0 4px;
+      font-size: 13px;
+      height: 28px;
+      line-height: 28px;
+      box-sizing: border-box;
+      text-align: center;
+      cursor: pointer;
+      user-select: none;
+      &.is-active {
+        color: #fff;
+        font-weight: bold;
+        background: $color-primary;
+      }
+      &.is-disabled {
+        cursor: not-allowed;
+        .v-icon {
+          fill: $color-text-placeholder;
+        }
+      }
+    }
+  }
+}

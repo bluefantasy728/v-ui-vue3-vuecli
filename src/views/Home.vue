@@ -2,7 +2,12 @@
   <div class="page">
     <div class="section section-pager">
       <h4>Pager</h4>
-      <v-pager :total="90"></v-pager>
+      <div style="margin-bottom:10px">
+        <v-pager :total="30"></v-pager>
+      </div>
+      <div>
+        <v-pager :total="210"></v-pager>
+      </div>
     </div>
     <div class="section section-select">
       <h4>Upload</h4>
