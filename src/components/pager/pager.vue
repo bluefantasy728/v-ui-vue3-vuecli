@@ -1,5 +1,5 @@
 <template>
-  <div class="v-pager" :total="100">
+  <div class="v-pager">
     <ul class="v-pager-list">
       <li
         :class="[
@@ -62,7 +62,6 @@ const count = computed(() => Math.ceil(props.total / size.value)) // 页面数�
 // 何时显示页码数字，何时显示省略号？页面1，最后一页，当前页，当前页+-1，当前页+-2，这7个是一直显示页码的，前后页码差距超过1的就显示省略号
 const list = computed(() => {
   const cur = current.value
-  // const count = count.value
   let arr = []
   if (count.value < 8) {
     for (let i = 1; i <= count.value; i++) {
@@ -96,7 +95,7 @@ const list = computed(() => {
       digitalList = Array.from(new Set(digitalList))
         .sort((a, b) => a - b)
         .filter(item => item > 0 && item <= count.value)
-
+      // 判断前后2个数字如果大于1的，中间就加上...
       arr = digitalList.reduce((acc, cur, index) => {
         acc.push(cur)
         if (digitalList[index + 1] - digitalList[index] > 1) {
