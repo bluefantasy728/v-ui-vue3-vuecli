@@ -1,5 +1,17 @@
 <template>
   <div class="page">
+    <div class="section section-radio">
+      <h4>Radio</h4>
+      <div style="margin-bottom:10px">
+        <v-radio-group v-model="radioVal">
+          <v-radio
+            v-for="(item,index) in radioOptions"
+            :key="index"
+            :value="item.value"
+          >{{item.label}}</v-radio>
+        </v-radio-group>
+      </div>
+    </div>
     <div class="section section-table">
       <h4>Table</h4>
       <div style="margin-bottom:10px">
@@ -247,6 +259,21 @@ const state = reactive({
   ],
   tableData: _tableData,
   tableColumn: _tableColumn,
+  radioVal: 2,
+  radioOptions: [
+    {
+      label: '备选项1',
+      value: 1,
+    },
+    {
+      label: '备选项2',
+      value: 2,
+    },
+    {
+      label: '备选项3',
+      value: 3,
+    },
+  ],
 })
 
 /***** 方法定义 *****/
@@ -272,6 +299,8 @@ const {
   imgList2,
   tableData,
   tableColumn,
+  radioVal,
+  radioOptions,
 } = toRefs(state)
 </script>
 <style lang="scss">
