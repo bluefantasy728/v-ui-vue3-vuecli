@@ -1,5 +1,11 @@
 <template>
   <div class="page">
+    <div class="section section-table">
+      <h4>Table</h4>
+      <div style="margin-bottom:10px">
+        <v-table :data="tableData" :column="tableColumn"></v-table>
+      </div>
+    </div>
     <div class="section section-pager">
       <h4>Pager</h4>
       <div style="margin-bottom:10px">
@@ -217,6 +223,7 @@ import { reactive, toRefs, onMounted, computed, getCurrentInstance } from 'vue'
 import { useStore } from 'vuex'
 
 import { _cascaderOptions, _selectOptions } from '@/assets/cascaderOptions.js'
+import { _tableData, _tableColumn } from '@/assets/table.js'
 
 const store = useStore()
 const { proxy } = getCurrentInstance()
@@ -238,6 +245,8 @@ const state = reactive({
   imgList2: [
     { filename: '02-1641542417884.jpg', size: 116763, type: 'image/jpeg' },
   ],
+  tableData: _tableData,
+  tableColumn: _tableColumn,
 })
 
 /***** 方法定义 *****/
@@ -261,6 +270,8 @@ const {
   selectResultMulti,
   imgList1,
   imgList2,
+  tableData,
+  tableColumn,
 } = toRefs(state)
 </script>
 <style lang="scss">
