@@ -93,3 +93,21 @@ const emitter = inject('emitter', null)
 - 关键问题是对当前页码 current 的控制
 - 当总页数少于 8 时，展示完整的分页器；如果大于等于 8，根据不同 current，要展示不同的页码以及省略号
 - 点击省略号也可以让 current 往前或者往后跳 5 格
+
+---
+
+## Table 表格
+
+table 的样式，如果要给 table 加边框以及宽度自适应，加入以下样式
+
+```css
+width: 100%;
+border-collapse: collapse;
+border-spacing: 0;
+```
+
+---
+
+## Radio 单选
+
+使用嵌套组件 v-radio 和 v-radio-group，然后 provide 和 inject 来传递选中的值以及修改这个选中值得方法。需要注意的是，Tabs 组件也同样有以下这个注意点，就是当外层组件 v-radio-group 不能直接把 Props 的 modelValue 直接 Provide 给 v-radio，这样传递的数据不是响应式的，导致的现象就是，即使通过 update:modelValue 改变了数据，而单个 v-radio 里拿到的 value 却不是最新的。为了避免这种情况发生，可以在 v-radio-group 组件里通过申明`const selected = ref(props.modelValue)`来接收一下，然后把这个 selected provide 给 v-radio ，然后修改值得时候，把 selected 值，再 `update:modelValue `就可以了
