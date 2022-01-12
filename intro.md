@@ -111,3 +111,10 @@ border-spacing: 0;
 ## Radio 单选
 
 使用嵌套组件 v-radio 和 v-radio-group，然后 provide 和 inject 来传递选中的值以及修改这个选中值得方法。需要注意的是，Tabs 组件也同样有以下这个注意点，就是当外层组件 v-radio-group 不能直接把 Props 的 modelValue 直接 Provide 给 v-radio，这样传递的数据不是响应式的，导致的现象就是，即使通过 update:modelValue 改变了数据，而单个 v-radio 里拿到的 value 却不是最新的。为了避免这种情况发生，可以在 v-radio-group 组件里通过申明`const selected = ref(props.modelValue)`来接收一下，然后把这个 selected provide 给 v-radio ，然后修改值得时候，把 selected 值，再 `update:modelValue `就可以了
+
+---
+
+## Checkbox 多选
+
+总体来说和 Radio 组件很像，只不过 checkbox-group 要传的参数是数组
+还有一个重点就是全选功能的实现的过程中需要有一个 indeterminate 状态，一条横线，既不是选中状态也不是未选中状态

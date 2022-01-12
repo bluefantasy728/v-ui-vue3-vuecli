@@ -10,23 +10,26 @@ export default {
 }
 </script>
 <script setup>
-import { ref, provide } from 'vue'
+import { ref, provide, computed } from 'vue'
 const props = defineProps({
   modelValue: {
     type: Array,
     required: true,
   },
 })
-const emit = defineEmits(['update:modelValue'])
-const selected = ref(props.modelValue)
+const emit = defineEmits(['update:modelValue', 'change'])
+// const selected = ref(props.modelValue)
+const selected = computed(() => props.modelValue)
 
 function change(val) {
   selected.value = val
   emit('update:modelValue', val)
+  emit('change', val)
 }
 
 provide('selected', selected)
 provide('change', change)
+provide('isInGroup', true)
 </script>
 
 

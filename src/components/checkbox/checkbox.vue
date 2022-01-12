@@ -4,11 +4,11 @@
       :class="[
         'v-checkbox-input',
         {
-          'is-checked':selected.includes(props.value)
+          'is-checked':isChecked
         }
       ]"
     >
-      <v-icon name="check"></v-icon>
+      <v-icon :name="indeterminate?'minus':'check'"></v-icon>
     </span>
     <span class="v-checkbox-label">
       <slot></slot>
@@ -22,25 +22,51 @@ export default {
 }
 </script>
 <script setup>
-import { inject } from 'vue'
+import { inject, computed } from 'vue'
 const props = defineProps({
   value: {
-    type: [String, Number],
-    required: true,
+    type: [Number, String, Boolean],
+    // required: true,
+  },
+  modelValue: {
+    type: Boolean,
+    default: false,
+  },
+  indeterminate: {
+    type: Boolean,
+    default: false,
   },
 })
-const selected = inject('selected')
-const change = inject('change')
+
+const emit = defineEmits(['update:modelValue', 'change'])
+
+const selected = inject('selected', null)
+const change = inject('change', () => {})
+const isInGroup = inject('isInGroup', false) // 是否被checkbox-group组件包裹
+
+const isChecked = computed(() => {
+  if (isInGroup) {
+    return selected.value.includes(props.value)
+  } else {
+    return props.modelValue
+  }
+})
 
 function handleClick() {
-  const res = [...selected.value]
-  const index = res.indexOf(props.value)
-  if (index < 0) {
-    res.push(props.value)
+  if (isInGroup) {
+    const res = [...selected.value]
+    const index = res.indexOf(props.value)
+    if (index < 0) {
+      res.push(props.value)
+    } else {
+      res.splice(index, 1)
+    }
+    change(res)
   } else {
-    res.splice(index, 1)
+    // console.log(props.modelValue)
+    emit('update:modelValue', !props.modelValue)
+    emit('change', !props.modelValue)
   }
-  change(res)
 }
 </script>
 <style scoped lang="scss">

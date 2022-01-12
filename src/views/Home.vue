@@ -17,6 +17,10 @@
           >{{item.label}}</v-checkbox>
         </v-checkbox-group>
       </div>
+      <hr />
+      <div style="margin-top:10px">
+        <v-checkbox-select-all :options="formOptions">全选</v-checkbox-select-all>
+      </div>
     </div>
     <div class="section section-radio">
       <h4>Radio</h4>
@@ -279,6 +283,7 @@ const state = reactive({
   tableColumn: _tableColumn,
   radioVal: 2,
   checkboxVal: [1, 2],
+  checkboxVal2: false,
   formOptions: [
     {
       label: '备选项1',
@@ -292,6 +297,10 @@ const state = reactive({
       label: '备选项3',
       value: 3,
     },
+    {
+      label: '备选项4',
+      value: 4,
+    },
   ],
   switchVal: false,
 })
@@ -303,7 +312,11 @@ const changeTabName = name => {
 }
 
 /***** 声明周期和watch *****/
-onMounted(async () => {})
+onMounted(async () => {
+  setTimeout(() => {
+    state.checkboxVal = [1, 2, 3]
+  }, 5000)
+})
 
 const {
   inputVal,
@@ -321,6 +334,7 @@ const {
   tableColumn,
   radioVal,
   checkboxVal,
+  checkboxVal2,
   formOptions,
   switchVal,
 } = toRefs(state)
