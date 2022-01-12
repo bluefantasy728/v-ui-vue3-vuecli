@@ -1,11 +1,29 @@
 <template>
   <div class="page">
+    <div class="section section-switch">
+      <h4>Switch</h4>
+      <div style="margin-bottom:10px">
+        <v-switch v-model="switchVal"></v-switch>
+      </div>
+    </div>
+    <div class="section section-checkbox">
+      <h4>Checkbox</h4>
+      <div style="margin-bottom:10px">
+        <v-checkbox-group v-model="checkboxVal">
+          <v-checkbox
+            v-for="(item,index) in formOptions"
+            :key="index"
+            :value="item.value"
+          >{{item.label}}</v-checkbox>
+        </v-checkbox-group>
+      </div>
+    </div>
     <div class="section section-radio">
       <h4>Radio</h4>
       <div style="margin-bottom:10px">
         <v-radio-group v-model="radioVal">
           <v-radio
-            v-for="(item,index) in radioOptions"
+            v-for="(item,index) in formOptions"
             :key="index"
             :value="item.value"
           >{{item.label}}</v-radio>
@@ -260,7 +278,8 @@ const state = reactive({
   tableData: _tableData,
   tableColumn: _tableColumn,
   radioVal: 2,
-  radioOptions: [
+  checkboxVal: [1, 2],
+  formOptions: [
     {
       label: '备选项1',
       value: 1,
@@ -274,6 +293,7 @@ const state = reactive({
       value: 3,
     },
   ],
+  switchVal: false,
 })
 
 /***** 方法定义 *****/
@@ -300,7 +320,9 @@ const {
   tableData,
   tableColumn,
   radioVal,
-  radioOptions,
+  checkboxVal,
+  formOptions,
+  switchVal,
 } = toRefs(state)
 </script>
 <style lang="scss">
