@@ -27,17 +27,15 @@ const indeterminate = ref(false)
 const isCheckAll = ref(false)
 
 function changeSelectAll(val) {
-  console.log(val)
   selectedList.value = val ? props.options.map(item => item.value) : []
-  console.log(selectedList.value)
   indeterminate.value = false
 }
 
 function onChangeSelect() {
-  console.log(selectedList.value)
   indeterminate.value =
     selectedList.value.length > 0 &&
     selectedList.value.length < props.options.length
+  isCheckAll.value = selectedList.value.length === props.options.length
 }
 </script>
 <style scoped lang="scss">

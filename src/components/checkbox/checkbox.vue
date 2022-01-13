@@ -4,7 +4,8 @@
       :class="[
         'v-checkbox-input',
         {
-          'is-checked':isChecked
+          'is-checked':isChecked,
+          'is-indeterminate':indeterminate
         }
       ]"
     >
@@ -48,7 +49,7 @@ const isChecked = computed(() => {
   if (isInGroup) {
     return selected.value.includes(props.value)
   } else {
-    return props.modelValue
+    return props.modelValue || props.value
   }
 })
 
@@ -94,7 +95,8 @@ function handleClick() {
     &:hover {
       border: 1px solid $color-primary;
     }
-    &.is-checked {
+    &.is-checked,
+    &.is-indeterminate {
       border: 1px solid $color-primary;
       background-color: $color-primary;
     }

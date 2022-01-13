@@ -1,5 +1,11 @@
 <template>
   <div class="page">
+    <div class="section section-table">
+      <h4>Table</h4>
+      <div style="margin-bottom:10px">
+        <v-table selection :data="tableData" :column="tableColumn"></v-table>
+      </div>
+    </div>
     <div class="section section-switch">
       <h4>Switch</h4>
       <div style="margin-bottom:10px">
@@ -32,12 +38,6 @@
             :value="item.value"
           >{{item.label}}</v-radio>
         </v-radio-group>
-      </div>
-    </div>
-    <div class="section section-table">
-      <h4>Table</h4>
-      <div style="margin-bottom:10px">
-        <v-table :data="tableData" :column="tableColumn"></v-table>
       </div>
     </div>
     <div class="section section-pager">
