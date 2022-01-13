@@ -1,0 +1,59 @@
+.v-checkbox {
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+  &:hover {
+    .v-checkbox-input {
+      &::after {
+        opacity: 1;
+      }
+    }
+  }
+  &.is-checked,
+  &.is-indeterminate {
+    .v-checkbox-input {
+      border: 1px solid $color-primary;
+      background-color: $color-primary;
+    }
+  }
+  .v-checkbox-input {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    width: 14px;
+    height: 14px;
+    border: 1px solid $border-color-base;
+    margin-right: 12px;
+    background: #fff;
+    transform-style: preserve-3d;
+    &:hover {
+      border: 1px solid $color-primary;
+    }
+
+    .v-icon {
+      fill: #fff;
+      margin-top: -7px;
+    }
+    .v-icon-minus {
+      transform: scale(0.8);
+    }
+    &::after {
+      content: '';
+      position: absolute;
+      display: inline-block;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate3d(-50%, -50%, -1px);
+      transition: 0.2s opacity;
+      background-color: #eee;
+      opacity: 0;
+    }
+  }
+  .v-checkbox-label {
+    display: inline-block;
+    vertical-align: middle;
+  }
+}

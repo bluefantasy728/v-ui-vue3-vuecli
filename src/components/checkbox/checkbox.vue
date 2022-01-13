@@ -1,14 +1,15 @@
 <template>
-  <div class="v-checkbox" @click="handleClick">
-    <span
-      :class="[
-        'v-checkbox-input',
-        {
-          'is-checked':isChecked,
-          'is-indeterminate':indeterminate
-        }
-      ]"
-    >
+  <div
+    :class="[
+      'v-checkbox',
+      {
+        'is-checked':isChecked,
+        'is-indeterminate':indeterminate
+      }
+    ]"
+    @click="handleClick"
+  >
+    <span class="v-checkbox-input">
       <v-icon :name="indeterminate?'minus':'check'"></v-icon>
     </span>
     <span class="v-checkbox-label">
@@ -24,6 +25,7 @@ export default {
 </script>
 <script setup>
 import { inject, computed } from 'vue'
+import vIcon from '@/components/icon/icon.vue'
 const props = defineProps({
   value: {
     type: [Number, String, Boolean],
@@ -71,57 +73,5 @@ function handleClick() {
 }
 </script>
 <style scoped lang="scss">
-.v-checkbox {
-  display: inline-block;
-  vertical-align: middle;
-  cursor: pointer;
-  &:hover {
-    .v-checkbox-input {
-      &::after {
-        opacity: 1;
-      }
-    }
-  }
-  .v-checkbox-input {
-    position: relative;
-    display: inline-block;
-    vertical-align: middle;
-    width: 14px;
-    height: 14px;
-    border: 1px solid $border-color-base;
-    margin-right: 12px;
-    background: #fff;
-    transform-style: preserve-3d;
-    &:hover {
-      border: 1px solid $color-primary;
-    }
-    &.is-checked,
-    &.is-indeterminate {
-      border: 1px solid $color-primary;
-      background-color: $color-primary;
-    }
-    .v-icon {
-      fill: #fff;
-      margin-top: -7px;
-    }
-    &::after {
-      content: '';
-      position: absolute;
-      display: inline-block;
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      top: 50%;
-      left: 50%;
-      transform: translate3d(-50%, -50%, -1px);
-      transition: 0.2s opacity;
-      background-color: #eee;
-      opacity: 0;
-    }
-  }
-  .v-checkbox-label {
-    display: inline-block;
-    vertical-align: middle;
-  }
-}
+@import './checkbox.scss';
 </style>

@@ -12,7 +12,8 @@ module.exports = {
   testMatch: [
     // '**/__test__/**/*.[jt]s?(x)',
     // "**/?(*.)+(spec|test).[jt]s?(x)"
-    '**/pager/__test__/?(*.)+(spec|test).[jt]s?(x)',
+    // '**/pager/__test__/?(*.)+(spec|test).[jt]s?(x)',
+    '**/checkbox/__test__/?(*.)+(spec|test).[jt]s?(x)',
   ],
   roots: ['<rootDir>'],
 }

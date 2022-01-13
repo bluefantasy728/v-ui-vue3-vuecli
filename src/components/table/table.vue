@@ -78,30 +78,4 @@ function onChangeSelect(index) {
 
 <style scoped lang="scss">
 @import 'table.scss';
-.v-table {
-  .v-table-wrap {
-    width: 100%;
-    border-collapse: collapse;
-    border-spacing: 0;
-    border: 1px solid $color-text-placeholder;
-    th {
-      text-align: left;
-    }
-    th,
-    td {
-      padding: 8px;
-      border-bottom: 1px solid $color-text-placeholder;
-    }
-    tbody {
-      tr {
-        &:nth-of-type(2n + 1) {
-          background: lighten($color-text-placeholder, 20);
-        }
-        &:hover {
-          background: lighten($color-primary, 60);
-        }
-      }
-    }
-  }
-}
 </style>

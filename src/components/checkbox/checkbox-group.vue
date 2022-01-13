@@ -21,7 +21,6 @@ const emit = defineEmits(['update:modelValue', 'change'])
 const selected = computed(() => props.modelValue)
 
 function change(val) {
-  selected.value = val
   emit('update:modelValue', val)
   emit('change', val)
 }

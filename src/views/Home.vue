@@ -312,11 +312,7 @@ const changeTabName = name => {
 }
 
 /***** 声明周期和watch *****/
-onMounted(async () => {
-  setTimeout(() => {
-    state.checkboxVal = [1, 2, 3]
-  }, 5000)
-})
+onMounted(async () => {})
 
 const {
   inputVal,

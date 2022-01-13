@@ -30,47 +30,5 @@ function change() {
 
 
 <style scoped lang="scss">
-.v-switch {
-  display: inline-block;
-  vertical-align: middle;
-  position: relative;
-  font-size: 14px;
-  line-height: 20px;
-  height: 20px;
-  .v-switch-inner {
-    width: 40px;
-    background: $color-primary;
-    margin: 0;
-    display: inline-block;
-    position: relative;
-    height: 20px;
-    border: 1px solid #dcdfe6;
-    background: #dcdfe6;
-    outline: none;
-    border-radius: 10px;
-    box-sizing: border-box;
-    cursor: pointer;
-    transition: border-color 0.3s, background-color 0.3s;
-    vertical-align: middle;
-    &::after {
-      content: '';
-      position: absolute;
-      top: 1px;
-      left: 1px;
-      border-radius: 100%;
-      transition: all 0.3s;
-      width: 16px;
-      height: 16px;
-      background-color: #fff;
-    }
-    &.is-active {
-      border: 1px solid $color-primary;
-      background: $color-primary;
-      &::after {
-        left: 100%;
-        margin-left: -17px;
-      }
-    }
-  }
-}
+@import './switch';
 </style>
