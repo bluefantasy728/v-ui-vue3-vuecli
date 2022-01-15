@@ -1,9 +1,20 @@
 .v-table {
+  position: relative;
+  .v-table-clone {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 40px;
+  }
   .v-table-wrap {
     width: 100%;
     border-collapse: collapse;
     border-spacing: 0;
     border: 1px solid $color-text-placeholder;
+    // position: relative;
+    // height: 400px;
+    // overflow: auto;
+
     th {
       text-align: left;
     }
