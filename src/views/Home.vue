@@ -3,7 +3,7 @@
     <div class="section section-table">
       <h4>Table</h4>
       <div style="margin-bottom:10px">
-        <v-table selection :data="tableData" :column="tableColumn"></v-table>
+        <v-table selection :data="tableData" :column="tableColumn" :sort-by="tableSortBy"></v-table>
       </div>
     </div>
     <div class="section section-switch">
@@ -281,6 +281,9 @@ const state = reactive({
   ],
   tableData: _tableData,
   tableColumn: _tableColumn,
+  tableSortBy: {
+    pluCount: '',
+  },
   radioVal: 2,
   checkboxVal: [1, 2],
   checkboxVal2: false,
@@ -328,6 +331,7 @@ const {
   imgList2,
   tableData,
   tableColumn,
+  tableSortBy,
   radioVal,
   checkboxVal,
   checkboxVal2,

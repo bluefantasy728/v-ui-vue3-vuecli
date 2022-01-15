@@ -22,5 +22,22 @@
         }
       }
     }
+    .v-table-header-cell {
+      @include flex-alignc;
+      .sort-icon {
+        margin-left: 6px;
+        cursor: pointer;
+      }
+      .v-icon {
+        display: block;
+        fill: $color-text-placeholder;
+        &.active {
+          fill: $color-text-regular;
+        }
+      }
+      .v-icon-caret-bottom {
+        margin-top: -7px;
+      }
+    }
   }
 }

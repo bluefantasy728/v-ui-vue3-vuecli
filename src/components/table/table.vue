@@ -10,11 +10,23 @@
               @change="changeSelectAll"
             ></v-checkbox>
           </th>
-          <th v-for="(item,index) in column" :key="item.field">{{item.label}}</th>
+          <th v-for="(item,index) in column" :key="item.field">
+            <div class="v-table-header-cell">
+              <span>{{item.label}}</span>
+              <div
+                class="sort-icon"
+                v-if="item.field in tableSortBy"
+                @click="changeSort(item.field)"
+              >
+                <v-icon name="caret-top" :class="{active:tableSortBy[item.field]==='asc'}"></v-icon>
+                <v-icon name="caret-bottom" :class="{active:tableSortBy[item.field]==='desc'}"></v-icon>
+              </div>
+            </div>
+          </th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(row,index) in data" :key="index">
+        <tr v-for="(row,index) in tableList" :key="index">
           <td v-if="selection">
             <v-checkbox :value="checkFn(row)" @change="onChangeSelect(index)"></v-checkbox>
           </td>
@@ -46,23 +58,29 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  sortBy: {
+    type: Object,
+    default: () => ({}),
+  },
 })
 
+const tableList = ref(props.data)
 const selectedList = ref([])
 const indeterminate = ref(false)
 const isCheckAll = ref(false)
+const tableSortBy = ref(props.sortBy)
 
 function checkFn(row) {
   return !!selectedList.value.find(item => item.id === row.id)
 }
 
 function changeSelectAll(val) {
-  selectedList.value = val ? cloneDeep(props.data) : []
+  selectedList.value = val ? cloneDeep(tableList.value) : []
   indeterminate.value = false
 }
 
 function onChangeSelect(index) {
-  const row = props.data[index]
+  const row = tableList.value[index]
   const idx = selectedList.value.findIndex(item => item.id === row.id)
   if (idx >= 0) {
     selectedList.value.splice(idx, 1)
@@ -71,8 +89,25 @@ function onChangeSelect(index) {
   }
   indeterminate.value =
     selectedList.value.length > 0 &&
-    selectedList.value.length < props.data.length
-  isCheckAll.value = selectedList.value.length === props.data.length
+    selectedList.value.length < tableList.value.length
+  isCheckAll.value = selectedList.value.length === tableList.value.length
+}
+
+function changeSort(field) {
+  let list = cloneDeep(props.data)
+  const sort = tableSortBy.value[field]
+  console.log(sort)
+  if (sort === 'asc') {
+    tableSortBy.value[field] = 'desc'
+    list.sort((a, b) => a[field] - b[[field]])
+  } else if (sort === 'desc') {
+    tableSortBy.value[field] = ''
+    list = cloneDeep(props.data)
+  } else {
+    tableSortBy.value[field] = 'asc'
+    list.sort((a, b) => b[field] - a[[field]])
+  }
+  tableList.value = list
 }
 </script>
 
