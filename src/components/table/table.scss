@@ -5,15 +5,25 @@
     top: 0;
     left: 0;
     height: 40px;
+    background: #fff;
+  }
+  .v-table-box {
+    height: 400px;
+    overflow: auto;
+    display: block;
+    width: unset;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    :deep(.v-scrollbar-wrap) {
+      max-height: unset;
+    }
   }
   .v-table-wrap {
     width: 100%;
     border-collapse: collapse;
     border-spacing: 0;
     border: 1px solid $color-text-placeholder;
-    // position: relative;
-    // height: 400px;
-    // overflow: auto;
 
     th {
       text-align: left;
@@ -22,6 +32,7 @@
     td {
       padding: 8px;
       border-bottom: 1px solid $color-text-placeholder;
+      box-sizing: border-box;
     }
     tbody {
       tr {

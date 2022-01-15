@@ -1,6 +1,6 @@
 <template>
   <div class="v-table" ref="tableContainer">
-    <div :style="{height:'400px',overflow:'auto'}">
+    <v-scrollbar class="v-table-box">
       <table class="v-table-wrap" ref="tableRef">
         <thead>
           <tr>
@@ -38,7 +38,7 @@
           </tr>
         </tbody>
       </table>
-    </div>
+    </v-scrollbar>
   </div>
 </template>
 <script>
@@ -90,32 +90,39 @@ const {
 const { tableSortBy, changeSort } = useSort(tableList, props)
 
 onMounted(() => {
-  // console.log(tableRef)
   // return
   const tableClone = tableRef.value.cloneNode(false)
   tableClone.classList.add('v-table-clone')
+  // 获取原始table的thead
   const tHead = tableRef.value.querySelector('thead')
+
+  const tHeadClone = tHead.cloneNode(true)
+  tableClone.style.width = tHead.offsetWidth + 'px'
+  console.log(tHead.offsetWidth)
   const { height } = tHead.getBoundingClientRect()
-  tableRef.value.style.marginTop = height + 'px'
-
-  // console.log(firstTr.offsetHeight)
-
-  tableClone.appendChild(tHead)
-
-  // console.log(tableRef.value.querySelectorAll('tr'))
-
-  const firstTr = tableRef.value.querySelectorAll('tr')[0]
-  // console.log(firstTr)
-  const tdList = firstTr.querySelectorAll('td')
 
   const thList = tHead.children[0].querySelectorAll('th')
-  console.log(thList)
-  // Array.from(tdList).forEach((node, index) => {
-  //   const { width } = node.getBoundingClientRect()
-  //   thList[index].style.width = width + 'px'
-  // })
+  // 获取tHead中所有列的宽度
+  const thWidthList = Array.from(thList).map((node, index) => node.offsetWidth)
+  console.log(thWidthList)
 
-  tableClone.style.background = 'pink'
+  // tableRef.value.style.marginTop = height + 'px'
+
+  // return
+
+  tableClone.appendChild(tHeadClone)
+
+  // const thList = tHead.children[0].querySelectorAll('th')
+  // console.log(thList)
+
+  // tableClone.style.background = 'pink'
+  const tr = tableClone.children[0].children[0]
+  const thListClone = tr.querySelectorAll('th')
+  Array.from(thListClone).forEach((node, index) => {
+    node.style.width = thWidthList[index] + 'px'
+  })
+
+  console.log(thListClone)
   tableContainer.value.appendChild(tableClone)
 })
 </script>
