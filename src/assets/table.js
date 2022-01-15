@@ -291,5 +291,8 @@ export const _tableColumn = [
   {
     field: 'gmtCreate',
     label: '生成时间',
+    value: (row, index) => {
+      return row.no + '==' + index
+    },
   },
 ]

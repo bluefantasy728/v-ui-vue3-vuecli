@@ -30,7 +30,11 @@
           <td v-if="selection">
             <v-checkbox :value="checkFn(row)" @change="onChangeSelect(index)"></v-checkbox>
           </td>
-          <td v-for="(item) in column" :key="item.field">{{row[item.field]}}</td>
+          <!-- <td v-for="(item) in column" :key="item.field">{{row[item.field]}}</td> -->
+          <td
+            v-for="(item) in column"
+            :key="item.field"
+          >{{item.value ? item.value(row,index) : row[item.field]}}</td>
         </tr>
       </tbody>
     </table>
