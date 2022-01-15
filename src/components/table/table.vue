@@ -45,6 +45,9 @@ export default {
 import { ref, computed } from 'vue'
 import vIcon from '@/components/icon/icon.vue'
 import cloneDeep from 'lodash.clonedeep'
+
+import useSelect from './useSelect'
+import useSort from './useSort'
 const props = defineProps({
   column: {
     type: Array,
@@ -62,53 +65,22 @@ const props = defineProps({
     type: Object,
     default: () => ({}),
   },
+  fixHeader: {
+    type: Boolean,
+    default: false,
+  },
 })
 
 const tableList = ref(props.data)
-const selectedList = ref([])
-const indeterminate = ref(false)
-const isCheckAll = ref(false)
-const tableSortBy = ref(props.sortBy)
-
-function checkFn(row) {
-  return !!selectedList.value.find(item => item.id === row.id)
-}
-
-function changeSelectAll(val) {
-  selectedList.value = val ? cloneDeep(tableList.value) : []
-  indeterminate.value = false
-}
-
-function onChangeSelect(index) {
-  const row = tableList.value[index]
-  const idx = selectedList.value.findIndex(item => item.id === row.id)
-  if (idx >= 0) {
-    selectedList.value.splice(idx, 1)
-  } else {
-    selectedList.value.push(row)
-  }
-  indeterminate.value =
-    selectedList.value.length > 0 &&
-    selectedList.value.length < tableList.value.length
-  isCheckAll.value = selectedList.value.length === tableList.value.length
-}
-
-function changeSort(field) {
-  let list = cloneDeep(props.data)
-  const sort = tableSortBy.value[field]
-  console.log(sort)
-  if (sort === 'asc') {
-    tableSortBy.value[field] = 'desc'
-    list.sort((a, b) => a[field] - b[[field]])
-  } else if (sort === 'desc') {
-    tableSortBy.value[field] = ''
-    list = cloneDeep(props.data)
-  } else {
-    tableSortBy.value[field] = 'asc'
-    list.sort((a, b) => b[field] - a[[field]])
-  }
-  tableList.value = list
-}
+const {
+  selectedList,
+  indeterminate,
+  isCheckAll,
+  checkFn,
+  changeSelectAll,
+  onChangeSelect,
+} = useSelect(tableList)
+const { tableSortBy, changeSort } = useSort(tableList, props)
 </script>
 
 <style scoped lang="scss">

@@ -3,7 +3,13 @@
     <div class="section section-table">
       <h4>Table</h4>
       <div style="margin-bottom:10px">
-        <v-table selection :data="tableData" :column="tableColumn" :sort-by="tableSortBy"></v-table>
+        <v-table
+          selection
+          :data="tableData"
+          :column="tableColumn"
+          :sort-by="tableSortBy"
+          fix-header
+        ></v-table>
       </div>
     </div>
     <div class="section section-switch">
